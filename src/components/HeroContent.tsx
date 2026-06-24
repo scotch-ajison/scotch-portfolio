@@ -37,23 +37,6 @@ export default function HeroContent() {
       {/* ── Content ── left aligned, vertically centred ── */}
       <div className="relative z-10 max-w-7xl mx-auto px-6 min-h-[100svh] flex flex-col justify-center pt-28 pb-20">
 
-        {/* Available badge */}
-        <motion.div
-          initial={{ opacity: 0, x: -16 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.5, ease }}
-          className="inline-flex items-center gap-2.5 mb-10 self-start"
-        >
-          <span className="relative flex h-1.5 w-1.5">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-success opacity-70" />
-            <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-success" />
-          </span>
-          <span className="font-mono text-[11px] text-success/80 tracking-[0.22em] uppercase">
-            Available for new projects
-          </span>
-          <span className="h-px w-10 bg-gradient-to-r from-success/25 to-transparent" />
-        </motion.div>
-
         {/* Pre-label */}
         <motion.p
           initial={{ opacity: 0, y: 12 }}
