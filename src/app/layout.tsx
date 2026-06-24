@@ -25,7 +25,10 @@ const jetbrainsMono = JetBrains_Mono({
   weight: ["400", "500"],
 })
 
+const siteUrl = "https://scotchajison.com"
+
 export const metadata: Metadata = {
+  metadataBase: new URL(siteUrl),
   title: {
     default: "Scotch Ajison — Spatial Intelligence Consultant",
     template: "%s | Scotch Ajison",
@@ -41,11 +44,36 @@ export const metadata: Metadata = {
     "GeoDjango developer",
     "spatial systems architect",
   ],
+  authors: [{ name: "Scotch Ajison", url: siteUrl }],
+  creator: "Scotch Ajison",
+  alternates: {
+    canonical: "/",
+  },
   openGraph: {
     title: "Scotch Ajison — Spatial Intelligence Consultant",
     description:
       "GIS Systems Architect building the spatial systems governments rely on — and designing the next generation with drones and AI.",
     type: "website",
+    url: siteUrl,
+    siteName: "Scotch Ajison",
+    locale: "en_US",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Scotch Ajison — Spatial Intelligence Consultant",
+    description:
+      "GIS Systems Architect building the spatial systems governments rely on — and designing the next generation with drones and AI.",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
   },
 }
 
@@ -54,11 +82,54 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Person",
+        "@id": `${siteUrl}/#person`,
+        name: "Scotch Ajison",
+        url: siteUrl,
+        jobTitle: "GIS Systems Architect & Spatial Intelligence Consultant",
+        description:
+          "GIS Systems Architect building the spatial systems governments and financial institutions rely on — and designing the next generation with drones and AI.",
+        knowsAbout: [
+          "Geographic Information Systems",
+          "Spatial Data Infrastructure",
+          "PostGIS",
+          "GeoDjango",
+          "Drone Mapping",
+          "Digital Twins",
+          "Spatial AI",
+        ],
+        address: {
+          "@type": "PostalAddress",
+          addressLocality: "Harare",
+          addressCountry: "ZW",
+        },
+      },
+      {
+        "@type": "WebSite",
+        "@id": `${siteUrl}/#website`,
+        url: siteUrl,
+        name: "Scotch Ajison",
+        description:
+          "Portfolio of Scotch Ajison — GIS Systems Architect and Spatial Intelligence Consultant.",
+        publisher: { "@id": `${siteUrl}/#person` },
+        inLanguage: "en",
+      },
+    ],
+  }
+
   return (
     <html lang="en">
       <body
         className={`${spaceGrotesk.variable} ${plusJakarta.variable} ${jetbrainsMono.variable} antialiased`}
       >
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
         <NavigationLoader />
         <Nav />
         <main>{children}</main>
