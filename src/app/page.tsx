@@ -41,7 +41,7 @@ const featuredProjects = [
     title: "Zimbabwe eCadastre",
     client: "Dept. of the Surveyor General",
     scope: "National Land Records System",
-    impact: "Digitized the entire national cadastral register",
+    impact: "Replaced a paper-based national cadastral register with a queryable spatial system",
     live: true,
     summary:
       "Real-time spatial querying, geodesy module, and business rules engine for land approvals — replacing a paper-based national system.",
@@ -102,7 +102,7 @@ const experience = [
     period: "Apr 2022 — Present",
     current: true,
     description:
-      "Built 6+ national-scale GIS systems in production — CBZ Mortgage Finance, Zimbabwe eCadastre, Land Information System, Lesotho Meteorological GIS, and three POTRAZ platforms.",
+      "GIS systems architect on the teams that delivered 6+ national-scale systems now live in production — mortgage finance, the Zimbabwe eCadastre, Land Information System, Lesotho Meteorological GIS, and three POTRAZ platforms.",
   },
   {
     role: "GIS Consultant",
