@@ -12,7 +12,7 @@ const milestones = [
   { year: "2018", label: "BSc Geoinformatics & Surveying — University of Zimbabwe" },
   { year: "2019", label: "President, UZ Mappers (OpenStreetMap community)" },
   { year: "2019", label: "ESRI ArcGIS Desktop Certification" },
-  { year: "2020", label: "Lead Developer — Zimbabwe eCadastre System" },
+  { year: "2020", label: "GIS Systems Architect — Zimbabwe eCadastre System" },
   { year: "2021", label: "Lead Developer — Ministry of Agriculture Land IS" },
   { year: "2022", label: "CBZ GIS Mortgage Finance System — Live in production" },
   { year: "2023", label: "SADC Artisanal Mining Mapping — 8 countries" },
@@ -65,11 +65,12 @@ export default function AboutPage() {
 
             <ScrollReveal delay={0.08}>
               <p className="text-fg-muted leading-[1.75] text-base">
-                That obsession turned into a career building the GIS systems that Zimbabwe's
-                government and financial institutions now run on. The eCadastre system that digitized
-                national land records. The mortgage platform that lets CBZ evaluate properties
-                spatially. The land information system that replaced paper-based ministerial approval
-                chains. These aren't prototypes — they're live, national-scale production systems.
+                That obsession turned into a career architecting the GIS systems that Zimbabwe's
+                government and financial institutions now run on. The eCadastre that replaced a paper
+                national land register. The mortgage platform that lets a commercial bank evaluate
+                properties spatially. The land information system that replaced paper-based ministerial
+                approval chains. I was the systems architect on the teams that delivered them — and they
+                aren't prototypes, they're live, national-scale production systems.
               </p>
             </ScrollReveal>
 

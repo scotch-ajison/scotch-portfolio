@@ -7,7 +7,7 @@ import WorkHero from "@/components/WorkHero"
 export const metadata: Metadata = {
   title: "Work",
   description:
-    "National-scale GIS systems built by Scotch Ajison — from digital cadastres to GIS-powered banking.",
+    "National-scale GIS systems Scotch Ajison architected and delivered as part of the teams that built them — from digital cadastres to GIS-powered banking.",
 }
 
 type TagVariant = "violet" | "electric" | "amber"
