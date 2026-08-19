@@ -61,10 +61,18 @@ export default function Footer() {
             </p>
             <div className="flex flex-col gap-2.5">
               <a
-                href="mailto:scotch@ajison.com"
+                href="mailto:sajison71@gmail.com"
                 className="text-sm text-fg-muted hover:text-fg transition-colors duration-150 w-fit"
               >
-                scotch@ajison.com
+                sajison71@gmail.com
+              </a>
+              <a
+                href="https://github.com/scotch-ajison"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-sm text-fg-muted hover:text-fg transition-colors duration-150 w-fit"
+              >
+                GitHub ↗
               </a>
               <a
                 href="https://linkedin.com/in/scotchajison"
