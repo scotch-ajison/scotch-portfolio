@@ -118,6 +118,22 @@ Every user-supplied value is HTML-escaped before it reaches the email body, and
 `Reply-To` is stripped of CR/LF — an unsanitised one is a header-injection
 vector. Every message is sent with a plain-text part alongside the HTML.
 
+## Deployment
+
+The Vercel project is connected to this GitHub repository, so a push to
+`master` deploys. It was previously CLI-linked with no Git integration, which
+is why the live site once sat 78 days behind `master` — a push did nothing and
+nothing said so. If deploys ever stop following pushes, check that connection
+first, and deploy by hand meanwhile:
+
+```bash
+npx vercel --prod
+```
+
+On Windows PowerShell, `npx` may be blocked by the execution policy
+(`npx.ps1 cannot be loaded because running scripts is disabled`). Use
+`npx.cmd` instead of changing the policy.
+
 ## Analytics
 
 `@vercel/analytics` and `@vercel/speed-insights`, both in `layout.tsx`. Enable
