@@ -1,7 +1,6 @@
 import type { Metadata } from "next"
 import Link from "next/link"
 import ScrollReveal from "@/components/ScrollReveal"
-import SpatialGrid from "@/components/three/SpatialGridWrapper"
 
 export const metadata: Metadata = {
   title: "Services",
@@ -88,26 +87,6 @@ export default function ServicesPage() {
     <>
       {/* ─── HEADER ── Dark section with 3D grid ─────────── */}
       <section className="relative pt-32 md:pt-40 pb-20 overflow-hidden">
-        {/* 3D Spatial Grid */}
-        <div
-          className="absolute pointer-events-none hidden md:block"
-          style={{ bottom: "-80px", right: "-80px", width: "min(580px, 55vw)", height: "480px", opacity: 1 }}
-        >
-          <SpatialGrid />
-        </div>
-
-        {/* Fade so grid blends */}
-        <div
-          className="absolute inset-0 pointer-events-none"
-          style={{
-            background:
-              "linear-gradient(to right, rgba(7,8,15,1) 25%, rgba(7,8,15,0.3) 58%, rgba(7,8,15,0) 100%)",
-          }}
-        />
-        <div
-          className="absolute bottom-0 left-0 right-0 h-32 pointer-events-none"
-          style={{ background: "linear-gradient(to bottom, transparent, #07080F)" }}
-        />
 
         <div className="relative z-10 max-w-7xl mx-auto px-6">
           <ScrollReveal>

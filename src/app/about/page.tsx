@@ -103,7 +103,7 @@ export default function AboutPage() {
       </section>
 
       {/* ── Experience ── */}
-      <section className="bg-paper text-fg-on-light on-paper">
+      <section className="bg-band text-on-band on-band">
         <div className="max-w-[1240px] mx-auto px-6 py-20 md:py-28">
           <ScrollReveal>
             <p className="section-mark mb-12">§ 01 — Experience</p>
@@ -112,12 +112,12 @@ export default function AboutPage() {
           <div className="space-y-12">
             {profile.experience.map((job) => (
               <ScrollReveal key={`${job.company}-${job.period}`}>
-                <div className="grid grid-cols-1 md:grid-cols-[200px_1fr] gap-4 md:gap-10 pb-12 border-b border-border-on-light last:border-0">
+                <div className="grid grid-cols-1 md:grid-cols-[200px_1fr] gap-4 md:gap-10 pb-12 border-b border-line-on-band last:border-0">
                   <div>
-                    <p className="font-mono text-[11px] text-fg-muted-on-light tracking-[0.08em]">
+                    <p className="font-mono text-[11px] text-on-band-muted tracking-[0.08em]">
                       {job.period}
                     </p>
-                    <p className="font-mono text-[11px] text-fg-muted-on-light tracking-[0.08em] mt-1">
+                    <p className="font-mono text-[11px] text-on-band-muted tracking-[0.08em] mt-1">
                       {job.location}
                     </p>
                   </div>
@@ -125,10 +125,10 @@ export default function AboutPage() {
                     <h3 className="font-display font-semibold text-xl md:text-2xl tracking-[-0.02em]">
                       {job.role}
                     </h3>
-                    <p className="font-mono text-[12px] text-accent-paper tracking-[0.06em] mt-1.5">
+                    <p className="font-mono text-[12px] text-accent-on-band tracking-[0.06em] mt-1.5">
                       {job.company}
                     </p>
-                    <p className="text-[15px] text-fg-muted-on-light leading-[1.7] mt-4 max-w-[68ch]">
+                    <p className="text-[15px] text-on-band-muted leading-[1.7] mt-4 max-w-[68ch]">
                       {job.summary}
                     </p>
                     {job.points.length > 0 && (
@@ -136,9 +136,9 @@ export default function AboutPage() {
                         {job.points.map((pt) => (
                           <li
                             key={pt}
-                            className="flex gap-3 text-[15px] text-fg-muted-on-light leading-[1.65]"
+                            className="flex gap-3 text-[15px] text-on-band-muted leading-[1.65]"
                           >
-                            <span className="shrink-0 mt-[9px] h-1 w-1 rounded-full bg-accent-paper" />
+                            <span className="shrink-0 mt-[9px] h-1 w-1 rounded-full bg-accent-on-band" />
                             {pt}
                           </li>
                         ))}

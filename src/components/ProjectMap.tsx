@@ -99,18 +99,18 @@ export default function ProjectMap() {
 
   return (
     <figure className="grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] gap-10 lg:gap-14 items-center">
-      <div className="relative rounded-md border border-border bg-ink-sunken overflow-hidden">
+      <div className="relative rounded-md border border-line bg-card overflow-hidden">
         <svg
           viewBox={`0 0 ${W} ${H}`}
           className="block w-full h-auto max-h-[460px] mx-auto"
           role="img"
           aria-label={`Outline map of Zimbabwe marking ${sites.length} locations where this work was delivered. Each is listed beside the map.`}
         >
-          <path d={graticule.join(" ")} stroke="var(--color-border)" strokeWidth="1" fill="none" />
+          <path d={graticule.join(" ")} stroke="var(--color-line)" strokeWidth="1" fill="none" />
           <path
             d={outlinePath}
-            fill="var(--color-ink-raised)"
-            stroke="var(--color-border-strong)"
+            fill="var(--color-card)"
+            stroke="var(--color-line-strong)"
             strokeWidth="1.5"
             strokeLinejoin="round"
           />
@@ -128,7 +128,7 @@ export default function ProjectMap() {
                   x={flip ? s.x - r - 12 : s.x + r + 12}
                   y={s.y + 6}
                   textAnchor={flip ? "end" : "start"}
-                  fill="var(--color-fg-muted)"
+                  fill="var(--color-ink-muted)"
                   fontSize="18"
                   fontFamily="var(--font-jetbrains), monospace"
                 >
@@ -142,7 +142,7 @@ export default function ProjectMap() {
           <text
             x={PAD}
             y={H - 20}
-            fill="var(--color-fg-subtle)"
+            fill="var(--color-ink-subtle)"
             fontSize="15"
             fontFamily="var(--font-jetbrains), monospace"
             letterSpacing="2.5"
@@ -157,19 +157,19 @@ export default function ProjectMap() {
             is information a screen-reader user does not have. */}
         <ul className="space-y-2.5">
           {located.map((p) => (
-            <li key={p.slug} className="flex gap-3 text-[14px] text-fg-muted leading-snug">
+            <li key={p.slug} className="flex gap-3 text-[14px] text-ink-muted leading-snug">
               <span
                 aria-hidden="true"
                 className="shrink-0 mt-[7px] h-1.5 w-1.5 rounded-full bg-accent"
               />
               <span>
                 {p.title}
-                <span className="text-fg-subtle"> — {p.location.label}</span>
+                <span className="text-ink-subtle"> — {p.location.label}</span>
               </span>
             </li>
           ))}
         </ul>
-        <figcaption className="font-mono text-[10px] text-fg-subtle pt-2 border-t border-border">
+        <figcaption className="font-mono text-[10px] text-ink-subtle pt-2 border-t border-line">
           Work with a fixed location. Boundary: Natural Earth 1:110m admin-0,
           public domain.
         </figcaption>

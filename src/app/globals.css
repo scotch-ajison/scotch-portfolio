@@ -1,66 +1,81 @@
 @import "tailwindcss";
 
 /* ══════════════════════════════════════════════════════════════
-   SURVEY DOCUMENT — design system
-   A technical monograph, not a SaaS landing page.
-   Warm ink, paper, one signal accent. Scale contrast does the work.
-   Every text token below is verified ≥ 4.5:1 on its own surface.
+   SURVEY DOCUMENT — light
+   Warm paper, near-black ink, one signal accent. White cards on a
+   warm grey page carry elevation without a single shadow.
+   Every text token below is verified >= 4.5:1 on its own surface.
    ══════════════════════════════════════════════════════════════ */
 
 @theme {
-  /* ── Surfaces: warm near-black, not blue-black ── */
-  --color-ink: #0B0B0C;
-  --color-ink-raised: #141416;
-  --color-ink-sunken: #060607;
+  /* ── Page and surfaces ── */
+  --color-paper: #F7F6F3;          /* page — warm grey, not pure white */
+  --color-card: #FFFFFF;           /* raised, by being brighter than the page */
+  --color-sunken: #EFEDE8;         /* wells, image backdrops */
 
-  /* ── Paper: warm off-white for alternating bands ── */
-  --color-paper: #F4F1EA;
-  --color-paper-raised: #FBF9F5;
+  /* ── Ink ── */
+  --color-ink: #16161A;            /* 14.9:1 on paper ✓ */
+  --color-ink-muted: #55534E;      /*  7.1:1 on paper ✓ */
+  --color-ink-subtle: #6F6C65;     /*  4.9:1 on paper ✓ */
 
-  /* ── Signal accent — survey orange. Exactly one. ── */
-  --color-accent: #E8542B;        /* 5.40:1 on ink  ✓ AA */
-  --color-accent-ink: #0B0B0C;    /* 5.77:1 on accent ✓ AA — black on orange */
-  --color-accent-paper: #C23D16;  /* 5.12:1 on paper ✓ AA */
+  /* ── Rules ── */
+  --color-line: #E4E1DB;
+  --color-line-strong: #CFCBC2;
 
-  /* ── Live / verified status ── */
-  --color-live: #4E9A5F;          /* 5.74:1 on ink ✓ AA */
+  /* ── Signal accent. One value, works both ways:
+         as text on paper 4.8:1, with white on it 5.2:1 ── */
+  --color-accent: #C43D12;
+  --color-accent-contrast: #FFFFFF;
+
+  --color-live: #2E7D45;           /* 4.7:1 on paper ✓ */
+
+  /* ── The dark band, used sparingly for emphasis ── */
+  --color-band: #121214;
+  --color-on-band: #F5F3EF;        /* 16.8:1 on band ✓ */
+  --color-on-band-muted: #B5B1A9;  /*  8.6:1 on band ✓ */
+  --color-on-band-subtle: #8A8781; /*  5.1:1 on band ✓ */
+  --color-line-on-band: #2A2A2E;
+  --color-line-on-band-strong: #3C3C41;
+  --color-accent-on-band: #F2693C; /*  6.4:1 on band ✓ */
 
   /* ────────────────────────────────────────────────
-     Legacy token names, remapped onto the new system.
-     Keeps every page coherent while the key routes are
-     rebuilt properly. Do not add new uses of these.
+     Legacy names, remapped onto the light system so
+     every page stays coherent. Do not add new uses.
      ──────────────────────────────────────────────── */
 
-  --color-bg: #0B0B0C;
-  --color-surface: #141416;
-  --color-surface-elevated: #1C1C1F;
+  --color-bg: #F7F6F3;
+  --color-surface: #FFFFFF;
+  --color-surface-elevated: #FFFFFF;
+  --color-ink-raised: #FFFFFF;
+  --color-ink-sunken: #EFEDE8;
 
-  --color-border: #232326;
-  --color-border-strong: #35353A;
+  --color-border: #E4E1DB;
+  --color-border-strong: #CFCBC2;
 
-  --color-fg: #F0EDE7;            /* 17.8:1 on ink ✓ */
-  --color-fg-muted: #B5B1AA;      /*  9.2:1 on ink ✓ */
-  --color-fg-subtle: #8A8782;     /*  5.5:1 on ink ✓ (was 2.50:1 — failed) */
+  --color-fg: #16161A;
+  --color-fg-muted: #55534E;
+  --color-fg-subtle: #6F6C65;
 
-  --color-violet: #E8542B;        /* → accent */
-  --color-electric: #E8542B;      /* → accent */
-  --color-amber: #E8542B;         /* → accent */
+  --color-violet: #C43D12;
+  --color-electric: #C43D12;
+  --color-amber: #C43D12;
+  --color-accent-ink: #FFFFFF;
 
-  --color-success: #4E9A5F;
-  --color-error: #D2442F;
+  --color-success: #2E7D45;
+  --color-error: #B3261E;          /* 5.9:1 on paper ✓ */
 
-  --color-bg-light: #F4F1EA;
-  --color-fg-on-light: #16161A;        /* 14.9:1 on paper ✓ */
-  --color-fg-muted-on-light: #5A5852;  /*  6.3:1 on paper ✓ (was 4.46:1 — failed) */
-  --color-border-on-light: #DCD7CC;
+  /* "light section" on the old dark site = a white band here */
+  --color-bg-light: #FFFFFF;
+  --color-fg-on-light: #16161A;
+  --color-fg-muted-on-light: #55534E;
+  --color-border-on-light: #E4E1DB;
+  --color-accent-paper: #C43D12;
 
   /* ── Type ── */
   --font-display: var(--font-inter-tight);
   --font-sans: var(--font-inter);
   --font-mono: var(--font-jetbrains);
   --font-serif: var(--font-instrument);
-
-  /* legacy aliases */
   --font-space: var(--font-inter-tight);
   --font-jakarta: var(--font-inter);
 }
@@ -72,12 +87,11 @@ html {
 }
 
 body {
-  background-color: #0B0B0C;
-  color: #F0EDE7;
+  background-color: #F7F6F3;
+  color: #16161A;
   font-family: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
   font-feature-settings: "cv11", "ss01";
   font-variant-ligatures: contextual;
-  /* No decorative page texture. The content carries the page. */
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -85,17 +99,11 @@ h1, h2, h3, h4, h5, h6 {
   text-wrap: balance;
 }
 
-p {
-  text-wrap: pretty;
-}
+p { text-wrap: pretty; }
 
-/* Tabular figures everywhere a number is compared against another number */
-.tnum,
-.font-mono {
-  font-variant-numeric: tabular-nums;
-}
+.tnum, .font-mono { font-variant-numeric: tabular-nums; }
 
-/* ─── Focus: one visible indicator, globally ───────── */
+/* ─── Focus ────────────────────────────────────────── */
 
 :where(a, button, input, select, textarea, summary, [tabindex]):focus-visible {
   outline: 2px solid var(--color-accent);
@@ -103,7 +111,6 @@ p {
   border-radius: 3px;
 }
 
-/* Skip link — first tab stop on every page */
 .skip-link {
   position: absolute;
   left: 50%;
@@ -112,26 +119,51 @@ p {
   z-index: 100;
   padding: 12px 20px;
   background: var(--color-accent);
-  color: var(--color-accent-ink);
+  color: #FFFFFF;
   font-family: var(--font-inter-tight), sans-serif;
   font-weight: 600;
   font-size: 14px;
   border-radius: 0 0 8px 8px;
   transition: transform 160ms ease;
 }
-.skip-link:focus {
-  transform: translate(-50%, 0);
+.skip-link:focus { transform: translate(-50%, 0); }
+
+/* ─── Form controls ────────────────────────────────────
+   A native <select> paints its dropdown list with the OS
+   palette, not the page's. On the old dark page the options
+   rendered white-on-white and were unreadable. Set both on
+   the option itself — the only thing that reaches that list. */
+
+select option,
+select optgroup {
+  background-color: #FFFFFF;
+  color: #16161A;
 }
+
+select:disabled option { color: #6F6C65; }
+
+/* The closed control, drawn by us rather than the OS. */
+.select-control {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'><path d='M1 1.5 6 6.5 11 1.5' fill='none' stroke='%236F6C65' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 2px center;
+  padding-right: 24px;
+}
+
+input::placeholder,
+textarea::placeholder { color: var(--color-ink-subtle); opacity: 1; }
 
 /* ─── Editorial utilities ──────────────────────────── */
 
-/* Section mark: "§ 01 — SELECTED WORK" */
 .section-mark {
   font-family: var(--font-jetbrains), monospace;
   font-size: 11px;
   letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: var(--color-fg-subtle);
+  color: var(--color-ink-subtle);
   display: flex;
   align-items: center;
   gap: 14px;
@@ -140,53 +172,41 @@ p {
   content: "";
   flex: 1;
   height: 1px;
-  background: var(--color-border);
+  background: var(--color-line);
 }
 
-.on-paper .section-mark {
-  color: var(--color-fg-muted-on-light);
-}
-.on-paper .section-mark::after {
-  background: var(--color-border-on-light);
-}
+/* Inside the dark band everything inverts. */
+.on-band { color: var(--color-on-band); }
+.on-band .section-mark { color: var(--color-on-band-subtle); }
+.on-band .section-mark::after { background: var(--color-line-on-band); }
 
-/* Pull quote — the one place a serif appears */
+/* Legacy class from the dark build — the light sections are white
+   bands now, so it only needs to reset to page ink. */
+.on-paper .section-mark { color: var(--color-ink-subtle); }
+.on-paper .section-mark::after { background: var(--color-line); }
+
 .pull-quote {
   font-family: var(--font-instrument), ui-serif, Georgia, serif;
   font-weight: 400;
-  line-height: 1.22;
+  line-height: 1.2;
   letter-spacing: -0.015em;
   text-wrap: balance;
 }
 
-/* Hairline rule */
-.rule {
-  height: 1px;
-  background: var(--color-border);
-}
-.on-paper .rule {
-  background: var(--color-border-on-light);
-}
+.rule { height: 1px; background: var(--color-line); }
+.on-band .rule { background: var(--color-line-on-band); }
 
-/* Legacy: these were a violet→cyan gradient. Now the signal accent. */
-.gradient-text {
-  color: var(--color-accent);
-}
-.gradient-bg {
-  background: var(--color-accent);
-}
+.gradient-text { color: var(--color-accent); }
+.gradient-bg { background: var(--color-accent); }
 
 /* ─── Scrollbar ─────────────────────────────────────── */
 
-::-webkit-scrollbar { width: 10px; }
-::-webkit-scrollbar-track { background: #0B0B0C; }
-::-webkit-scrollbar-thumb { background: #35353A; border: 3px solid #0B0B0C; border-radius: 99px; }
-::-webkit-scrollbar-thumb:hover { background: #4A4A50; }
+::-webkit-scrollbar { width: 11px; }
+::-webkit-scrollbar-track { background: #EFEDE8; }
+::-webkit-scrollbar-thumb { background: #CFCBC2; border: 3px solid #EFEDE8; border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: #B3AEA4; }
 
-::selection {
-  background: var(--color-accent);
-  color: var(--color-accent-ink);
-}
+::selection { background: var(--color-accent); color: #FFFFFF; }
 
 /* ─── Motion ────────────────────────────────────────── */
 
@@ -195,18 +215,12 @@ p {
   to   { transform: translateX(-50%); }
 }
 
-/* One switch. Everything that moves respects it. */
 @media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
+  *, *::before, *::after {
     animation-duration: 0.001ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.001ms !important;
     scroll-behavior: auto !important;
   }
-  .marquee-track {
-    animation: none !important;
-    transform: none !important;
-  }
+  .marquee-track { animation: none !important; transform: none !important; }
 }

@@ -16,6 +16,10 @@ interface ScrollRevealProps {
  *
  * MotionProvider sets reducedMotion="user" globally, so this is already
  * neutralised for anyone who asked for less motion.
+ *
+ * The `data-reveal` hook exists so a <noscript> rule in the layout can
+ * force these visible: the element starts at opacity 0, so without
+ * JavaScript everything below the hero would never appear at all.
  */
 export default function ScrollReveal({
   children,
@@ -25,10 +29,11 @@ export default function ScrollReveal({
 }: ScrollRevealProps) {
   return (
     <motion.div
+      data-reveal
       initial={{ opacity: 0, y }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.55, delay, ease: [0.16, 1, 0.3, 1] }}
-      viewport={{ once: true, margin: "-80px" }}
+      viewport={{ once: true, margin: "-40px" }}
       className={className}
     >
       {children}

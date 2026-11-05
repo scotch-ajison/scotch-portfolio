@@ -30,23 +30,30 @@ const DOCS = `${HOME}/Documents`
 const PROJ = `${HOME}/Desktop/Desktop/Projects`
 const QGIS = `${PROJ}/QGIS Plugin/docs`
 const ZRP = `${PROJ}/Techsys/ZRP/zrp screenshots`
+/** Photographs the owner supplied, kept in the repo so CI is not required
+ *  to reach a folder that only exists on one machine. */
+const REPO_PHOTOS = path.join(REPO, "source-photos")
 
 /** @type {Array<{slug:string,source:string,maxWidth:number,quality?:number,portrait?:boolean}>} */
 const MANIFEST = [
   // ── Portrait ──────────────────────────────────────────────
-  // 592x592 source, and the only portrait that exists. Cropped to head and
-  // shoulders — that removes most of the busy foliage, which is what made
-  // it read as a social snapshot. Then a modest upscale so it holds at a
-  // 340px display on a 2x screen, light unsharp (heavier crunches the
-  // leaves), and colour pulled back rather than off, so it sits beside the
-  // accent without going full black-and-white.
+  // 1080x992 environmental portrait at the desk. Two crops from one frame:
+  // a square for the portrait slots, and a wider one that keeps the
+  // monitors in shot for the hero band. No upscale needed and no colour
+  // correction — it is well lit and already professional.
   {
     slug: "portrait",
-    source: `${DOCS}/Scotch.jpeg`,
-    maxWidth: 900,
-    quality: 90,
-    portrait: true,
-    crop: { left: 152, top: 10, width: 430, height: 430 },
+    source: `${REPO_PHOTOS}/scotch-desk.jpg`,
+    maxWidth: 760,
+    quality: 88,
+    crop: { left: 170, top: 130, width: 680, height: 680 },
+  },
+  {
+    slug: "workspace",
+    source: `${REPO_PHOTOS}/scotch-desk.jpg`,
+    maxWidth: 1400,
+    quality: 82,
+    crop: { left: 0, top: 96, width: 1080, height: 720 },
   },
 
   // ── Field Pack — QGIS plugin (his own, MIT, public) ───────

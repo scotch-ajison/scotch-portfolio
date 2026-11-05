@@ -1,7 +1,9 @@
 export const PROJECT_LABELS: Record<string, string> = {
+  "software-dev": "Software Development",
+  "ai-integration": "AI Integration",
   "gis-system": "GIS System Architecture",
-  "drone-gis": "Drone Data & GIS Integration",
   "spatial-consulting": "Spatial Data Consulting",
+  "drone-gis": "Drone Data & GIS Integration",
   "ai-gis": "AI + GIS Research",
   other: "Other",
 }

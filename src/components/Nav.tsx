@@ -50,7 +50,7 @@ export default function Nav() {
       <header
         className={`fixed top-0 left-0 right-0 z-50 transition-colors duration-300 ${
           scrolled
-            ? "bg-ink/85 backdrop-blur-xl border-b border-border"
+            ? "bg-paper/85 backdrop-blur-xl border-b border-line"
             : "bg-transparent border-b border-transparent"
         }`}
       >
@@ -131,7 +131,7 @@ export default function Nav() {
         }`}
       >
         <div
-          className="absolute inset-0 bg-ink-sunken/80 backdrop-blur-sm"
+          className="absolute inset-0 bg-ink/40 backdrop-blur-sm"
           onClick={() => setOpen(false)}
         />
         <div

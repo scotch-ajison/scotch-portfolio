@@ -43,7 +43,7 @@ export default function WorkPage() {
             { v: String(counts.publicRepos), k: "Public repositories" },
             { v: `${counts.years}+`, k: "Years" },
           ].map((s) => (
-            <div key={s.k} className="bg-ink px-5 py-6 md:px-7">
+            <div key={s.k} className="bg-card px-5 py-6 md:px-7">
               <dt className="sr-only">{s.k}</dt>
               <dd>
                 <span className="block font-display font-semibold text-3xl md:text-4xl text-fg tracking-[-0.03em] leading-none tabular-nums">

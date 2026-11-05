@@ -35,6 +35,18 @@ export type Links = {
   repo?: string
 }
 
+/**
+ * Cover for a project with no screenshot — an NDA system, or one whose
+ * interface cannot be shown. A typographic plate rather than a borrowed
+ * logo: it scales, it needs no third-party asset, and it does not imply
+ * an endorsement the client never gave.
+ */
+export type Plate = {
+  /** Short mark, 2–4 characters. */
+  mark: string
+  caption: string
+}
+
 export type Visibility = {
   /** Appears on /work and counts toward every derived total. */
   listed: boolean
@@ -66,6 +78,7 @@ export type Project = {
   metrics: Metric[]
   stack: { label: string; variant: TagVariant }[]
   images: ProjectImage[]
+  plate?: Plate
   location?: { lat: number; lng: number; label: string }
   visibility: Visibility
   /** ISO date. Drives sitemap lastModified — never `new Date()`. */

@@ -18,7 +18,7 @@ export default function Portrait({
 }) {
   return (
     <div className={`relative shrink-0 ${className}`} style={{ width: size }}>
-      <div className="relative overflow-hidden rounded-sm border border-border-strong">
+      <div className="relative overflow-hidden rounded-sm border border-line">
         <Image
           src={portrait}
           alt={`${profile.name}, ${profile.role}, in Harare.`}
@@ -29,18 +29,8 @@ export default function Portrait({
           sizes={`${size}px`}
           className="block w-full h-auto"
         />
-        {/* Grounds the photograph on the dark page rather than letting it
-            float as a bright square. */}
-        <div
-          aria-hidden="true"
-          className="absolute inset-0 pointer-events-none"
-          style={{
-            background:
-              "linear-gradient(to top, rgba(11,11,12,0.55) 0%, rgba(11,11,12,0.06) 38%, transparent 70%)",
-          }}
-        />
       </div>
-      <p className="font-mono text-[10px] text-fg-subtle tracking-[0.14em] uppercase mt-3">
+      <p className="font-mono text-[10px] text-ink-subtle tracking-[0.14em] uppercase mt-3">
         {profile.coordinates.label}
       </p>
     </div>

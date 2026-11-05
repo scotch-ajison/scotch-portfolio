@@ -1,7 +1,6 @@
 import type { Metadata } from "next"
 import ScrollReveal from "@/components/ScrollReveal"
 import ContactForm from "@/components/ContactForm"
-import ContactGlobe from "@/components/three/ContactGlobeWrapper"
 import { profile } from "@/content/profile"
 
 export const metadata: Metadata = {
@@ -24,25 +23,6 @@ export default function ContactPage() {
     <>
       {/* ─── HEADER ── Dark section ──────────────────────── */}
       <section className="relative pt-32 md:pt-40 pb-16 md:pb-20 overflow-hidden">
-        {/* 3D Globe */}
-        <div
-          className="absolute pointer-events-none hidden md:block"
-          style={{ top: "-20px", right: "80px", width: "420px", height: "420px", opacity: 0.75 }}
-        >
-          <ContactGlobe />
-        </div>
-
-        <div
-          className="absolute inset-0 pointer-events-none hidden md:block"
-          style={{
-            background:
-              "linear-gradient(to right, rgba(7,8,15,1) 40%, rgba(7,8,15,0.55) 72%, rgba(7,8,15,0.1) 100%)",
-          }}
-        />
-        <div
-          className="absolute bottom-0 left-0 right-0 h-24 pointer-events-none"
-          style={{ background: "linear-gradient(to bottom, transparent, #07080F)" }}
-        />
 
         <div className="relative z-10 max-w-7xl mx-auto px-6">
           <ScrollReveal>

@@ -7,9 +7,11 @@ type FormState = "idle" | "submitting" | "success" | "error"
 type FieldErrors = Partial<Record<string, string>>
 
 const PROJECT_TYPES = [
+  ["software-dev", "Software Development"],
+  ["ai-integration", "AI Integration"],
   ["gis-system", "GIS System Architecture"],
-  ["drone-gis", "Drone Data & GIS Integration"],
   ["spatial-consulting", "Spatial Data Consulting"],
+  ["drone-gis", "Drone Data & GIS Integration"],
   ["ai-gis", "AI + GIS Research"],
   ["other", "Other"],
 ] as const
@@ -23,8 +25,8 @@ const BUDGETS = [
 ] as const
 
 const FIELD_CLASS =
-  "w-full bg-transparent border-b border-border-strong pb-3 pt-1 text-[15px] text-fg " +
-  "placeholder:text-fg-subtle focus:border-accent transition-colors duration-200"
+  "w-full bg-transparent border-b border-line-strong pb-3 pt-1 text-[15px] text-ink " +
+  "placeholder:text-ink-subtle focus:border-accent transition-colors duration-200"
 
 function FieldLabel({
   htmlFor,
@@ -38,7 +40,7 @@ function FieldLabel({
   return (
     <label
       htmlFor={htmlFor}
-      className="block font-mono text-[11px] text-fg-subtle tracking-[0.12em] uppercase mb-2"
+      className="block font-mono text-[11px] text-ink-subtle tracking-[0.12em] uppercase mb-2"
     >
       {children}
       {required && (
@@ -132,10 +134,10 @@ export default function ContactForm() {
             Message sent
           </p>
         </div>
-        <h2 className="font-display font-semibold text-3xl text-fg tracking-[-0.025em]">
+        <h2 className="font-display font-semibold text-3xl text-ink tracking-[-0.025em]">
           It reached me.
         </h2>
-        <p className="text-fg-muted text-[15px] leading-[1.7] max-w-md">
+        <p className="text-ink-muted text-[15px] leading-[1.7] max-w-md">
           A copy is on its way to your inbox so you have a record of it. I read
           everything that comes through this form and usually reply within 48
           hours.
@@ -193,7 +195,7 @@ export default function ContactForm() {
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-8">
         <div>
           <FieldLabel htmlFor={fid("projectType")} required>Project type</FieldLabel>
-          <select value={form.projectType} {...a11y("projectType", true)} className={`${field} appearance-none cursor-pointer rounded-none`}>
+          <select value={form.projectType} {...a11y("projectType", true)} className={`${field} select-control cursor-pointer rounded-none`}>
             <option value="" disabled>Select a category</option>
             {PROJECT_TYPES.map(([v, l]) => (
               <option key={v} value={v}>{l}</option>
@@ -203,7 +205,7 @@ export default function ContactForm() {
         </div>
         <div>
           <FieldLabel htmlFor={fid("budget")}>Budget range</FieldLabel>
-          <select value={form.budget} {...a11y("budget")} className={`${field} appearance-none cursor-pointer rounded-none`}>
+          <select value={form.budget} {...a11y("budget")} className={`${field} select-control cursor-pointer rounded-none`}>
             {BUDGETS.map(([v, l]) => (
               <option key={v || "none"} value={v}>{l}</option>
             ))}
@@ -234,7 +236,7 @@ export default function ContactForm() {
         type="submit"
         disabled={state === "submitting"}
         className="font-display font-semibold text-[15px] px-7 py-3.5 rounded-md
-          bg-accent text-accent-ink hover:brightness-110
+          bg-accent text-white hover:brightness-110
           disabled:opacity-60 disabled:cursor-not-allowed
           transition-[filter,opacity] duration-150"
       >

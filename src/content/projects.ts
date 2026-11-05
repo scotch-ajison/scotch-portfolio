@@ -32,6 +32,7 @@ export const projects: Project[] = [
     scale: "National land register",
     status: "live",
     disclosure: { kind: "named", client: "Department of the Surveyor General" },
+    plate: { mark: "SG", caption: "Department of the Surveyor General" },
     links: { live: "http://zimcadastre.co.zw" },
     problem:
       "Zimbabwe's cadastral record was paper-based and fragmented. A surveyor lodging a diagram, an examiner checking it and a citizen searching a title were all working from different copies of the truth, and none of them could query it spatially.",
@@ -60,12 +61,13 @@ export const projects: Project[] = [
   {
     slug: "cbz-gis-mortgage",
     order: 2,
-    title: "GIS Mortgage Finance Platform",
+    title: "CBZ GIS Mortgage Platform",
     role: "GIS systems architect, on the delivering team",
     period: "2022 — 2023",
     scale: "National banking",
     status: "live",
     disclosure: { kind: "named", client: "Commercial Bank of Zimbabwe (CBZ)" },
+    plate: { mark: "CBZ", caption: "Commercial Bank of Zimbabwe" },
     links: {},
     accessNote:
       "An internal banking platform — there is no public URL to link, and there should not be one.",
@@ -92,8 +94,47 @@ export const projects: Project[] = [
   },
 
   {
-    slug: "field-pack",
+    slug: "drone-outreach-agent",
     order: 3,
+    title: "Autonomous lead and outreach agent",
+    role: "Author",
+    period: "2026",
+    scale: "Commercial drone operator",
+    status: "live",
+    disclosure: {
+      kind: "anonymised",
+      clientDescriptor: "A commercial drone-services company",
+    },
+    plate: { mark: "AI", caption: "Lead and outreach agent" },
+    links: {},
+    accessNote: "An internal system for a client — no public URL.",
+    problem:
+      "Leads arrived from a website form and a shared inbox, and were worked by hand. Follow-up depended on who happened to read the message, nobody could say who had been contacted or what had been promised, and a lead that went cold left no trace of why.",
+    approach:
+      "An agent that watches the inbox and the website's lead forms, identifies and enriches the prospect, drafts outreach, and writes every contact back to a record. The draft is built from retrieval over the company's own past email threads, so the tone is learned from what they actually send rather than described in a prompt — and it keeps improving as more correspondence lands. A separate prospecting pass goes looking for candidate clients the inbox never produced.",
+    outcome:
+      "Nothing leaves the building without a human approving it. The approval gate is the architecture, not a setting: the agent researches, drafts and queues, and a person decides. That is what makes it safe to point at real customers.",
+    metrics: [
+      { label: "Outbound", value: "Human-approved", note: "No message sends itself" },
+      { label: "Tone", value: "Learned", note: "RAG over the company's own threads" },
+      { label: "Record", value: "Every contact", note: "Logged against the customer" },
+    ],
+    stack: [
+      { label: "Python", variant: "electric" },
+      { label: "LLM agents", variant: "violet" },
+      { label: "RAG", variant: "violet" },
+      { label: "Email integration", variant: "electric" },
+      { label: "Web scraping", variant: "amber" },
+      { label: "Approval workflow", variant: "violet" },
+    ],
+    images: [],
+    visibility: { listed: true, featured: true },
+    updatedAt: "2026-11-05",
+  },
+
+  {
+    slug: "field-pack",
+    order: 4,
     title: "Field Pack — orthomosaics without GIS",
     role: "Author. Open source, MIT",
     period: "2026",
@@ -155,13 +196,14 @@ export const projects: Project[] = [
 
   {
     slug: "crop-disease-diagnosis",
-    order: 4,
+    order: 5,
     title: "Crop-disease diagnosis from a photograph",
     role: "Author. Open source",
     period: "2026",
     scale: "281-condition knowledge base",
     status: "live",
     disclosure: { kind: "self", client: "Own project" },
+    plate: { mark: "KB", caption: "281-condition knowledge base" },
     links: { repo: "https://github.com/scotch-ajison/zimkb" },
     problem:
       "A model that names a disease from a photograph is easy to prototype and very hard to make safe. Look-alikes are everywhere, a third of what a farmer photographs is not a pathogen at all, and a model prescribing from general training data will happily recommend a pesticide that is banned in Zimbabwe.",
@@ -188,13 +230,14 @@ export const projects: Project[] = [
 
   {
     slug: "building-change-observatory",
-    order: 5,
+    order: 8,
     title: "Building Change Observatory",
     role: "Author. Open data, CC BY 4.0",
     period: "2026",
     scale: "8 km² of Harare, 2016 — present",
     status: "research",
     disclosure: { kind: "self", client: "Own project" },
+    plate: { mark: "BCO", caption: "Building Change Observatory" },
     links: {},
     accessNote:
       "Not yet published — the repository is local while the validation sample is scored.",
@@ -224,7 +267,7 @@ export const projects: Project[] = [
 
   {
     slug: "operational-policing-platform",
-    order: 6,
+    order: 7,
     title: "Operational policing platform",
     role: "Developer",
     period: "2026",
@@ -286,7 +329,7 @@ export const projects: Project[] = [
 
   {
     slug: "ward-population-gis",
-    order: 7,
+    order: 9,
     title: "Repairing a national ward population layer",
     role: "Author",
     period: "2026",
@@ -324,7 +367,7 @@ export const projects: Project[] = [
 
   {
     slug: "ministry-land-information-system",
-    order: 8,
+    order: 10,
     title: "Land Information System",
     role: "Lead developer",
     period: "2022 — 2023",
@@ -356,7 +399,7 @@ export const projects: Project[] = [
 
   {
     slug: "potraz-monitoring",
-    order: 9,
+    order: 6,
     title: "Results-based monitoring systems",
     role: "Sole developer, architecture to deployment",
     period: "2023 — 2025",
@@ -366,6 +409,7 @@ export const projects: Project[] = [
       kind: "named",
       client: "Postal and Telecommunications Regulatory Authority of Zimbabwe",
     },
+    plate: { mark: "PTZ", caption: "POTRAZ — telecoms regulator" },
     links: {},
     problem:
       "Department heads across the regulator had no shared way to track KPIs or monitor team performance, so evaluation was manual and retrospective.",
@@ -383,13 +427,13 @@ export const projects: Project[] = [
     ],
     images: [],
     location: { lat: -17.8099, lng: 31.0533, label: "Harare" },
-    visibility: { listed: true, featured: false },
+    visibility: { listed: true, featured: true },
     updatedAt: "2026-08-21",
   },
 
   {
     slug: "sadc-artisanal-mining",
-    order: 10,
+    order: 11,
     title: "Artisanal mining across eight countries",
     role: "GIS specialist",
     period: "2022",
@@ -419,7 +463,7 @@ export const projects: Project[] = [
 
   {
     slug: "zrbf-spatial-data-warehouses",
-    order: 11,
+    order: 12,
     title: "Spatial data warehouses, ten district councils",
     role: "GIS specialist & deployment",
     period: "2020 — 2021",
@@ -449,7 +493,7 @@ export const projects: Project[] = [
 
   {
     slug: "covid-response-dashboard",
-    order: 12,
+    order: 13,
     title: "COVID-19 spatial response dashboard",
     role: "Developer",
     period: "2020 — 2021",
@@ -480,7 +524,7 @@ export const projects: Project[] = [
 
   {
     slug: "earth-engine-index-explorer",
-    order: 13,
+    order: 14,
     title: "Vegetation index explorer",
     role: "Author",
     period: "2026",
@@ -511,7 +555,7 @@ export const projects: Project[] = [
 
   {
     slug: "investor-hosting",
-    order: 14,
+    order: 15,
     title: "Investor intelligence platform",
     role: "Developer",
     period: "2026",
@@ -537,7 +581,7 @@ export const projects: Project[] = [
 
   {
     slug: "openstreetmap",
-    order: 15,
+    order: 16,
     title: "OpenStreetMap contribution",
     role: "Contributor — YouthMappers, University of Zimbabwe",
     period: "2019 — present",

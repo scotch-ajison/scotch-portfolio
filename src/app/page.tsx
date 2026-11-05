@@ -64,7 +64,7 @@ export default function HomePage() {
             { v: String(counts.live), k: "Live in production" },
             { v: String(counts.publicRepos), k: "Public repositories" },
           ].map((s) => (
-            <div key={s.k} className="bg-ink px-5 py-6 md:px-7 md:py-8">
+            <div key={s.k} className="bg-card px-5 py-6 md:px-7 md:py-8">
               <dt className="sr-only">{s.k}</dt>
               <dd>
                 <span className="block font-display font-semibold text-3xl md:text-[40px] text-fg tracking-[-0.03em] leading-none tabular-nums">
@@ -131,7 +131,7 @@ export default function HomePage() {
       {/* ═══ HOW I WORK ══════════════════════════════════════
           The differentiator. Most portfolios claim only successes; this
           one names the thing its own research could not detect. */}
-      <section className="mt-24 md:mt-32 bg-paper text-fg-on-light on-paper">
+      <section className="mt-24 md:mt-32 bg-band text-on-band on-band">
         <div className="max-w-[1240px] mx-auto px-6 py-20 md:py-28">
           <ScrollReveal>
             <p className="section-mark mb-12">§ 02 — How I work</p>
@@ -163,7 +163,7 @@ export default function HomePage() {
                 <h3 className="font-display font-semibold text-xl tracking-[-0.015em] mb-3">
                   {c.h}
                 </h3>
-                <p className="text-[15px] text-fg-muted-on-light leading-[1.7]">{c.p}</p>
+                <p className="text-[15px] text-on-band-muted leading-[1.7]">{c.p}</p>
               </ScrollReveal>
             ))}
           </div>
