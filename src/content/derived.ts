@@ -45,9 +45,12 @@ export const counts = {
  * Card rhythm for the work grid: one full-width, then a pair, repeating.
  * Replaces nine hand-unrolled slice() calls and four duplicated JSX blocks.
  */
-export function rhythm(n: number): Array<"full" | "half"> {
-  const out: Array<"full" | "half"> = []
-  for (let i = 0; i < n; i++) out.push(i % 3 === 0 ? "full" : "half")
+export function rhythm(items: Project[]): Array<"full" | "half"> {
+  // A project with a real cover gets the full-width slot — a screenshot
+  // squeezed into a half card is a thumbnail, and proves nothing.
+  const out: Array<"full" | "half"> = items.map((p, i) =>
+    p.images.length > 0 || p.cover ? "full" : i % 3 === 0 ? "full" : "half"
+  )
   // Never leave a lone half-width card orphaned on its own row.
   if (out.at(-1) === "half" && out.at(-2) === "full") out[out.length - 1] = "full"
   return out

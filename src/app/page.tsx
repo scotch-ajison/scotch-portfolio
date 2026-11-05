@@ -1,22 +1,24 @@
 import Link from "next/link"
 import ScrollReveal from "@/components/ScrollReveal"
 import Portrait from "@/components/Portrait"
+import HeroPortrait from "@/components/HeroPortrait"
 import ProjectCard from "@/components/work/ProjectCard"
 import StackTag from "@/components/StackTag"
 import { profile } from "@/content/profile"
 import { featured, counts, clientNames, rhythm } from "@/content/derived"
 
 export default function HomePage() {
-  const spans = rhythm(featured.length)
+  const spans = rhythm(featured)
 
   return (
     <>
       {/* ═══ HERO ════════════════════════════════════════════
           Static, no entrance animation and no canvas behind it.
           The headline is the LCP element; nothing should delay it. */}
-      <section className="max-w-[1240px] mx-auto px-6 pt-32 md:pt-44 pb-16 md:pb-24">
-        <div className="grid grid-cols-1 lg:grid-cols-[1fr_auto] gap-12 lg:gap-20 items-start">
-          <div className="max-w-[760px]">
+      <section className="relative overflow-hidden pt-32 md:pt-44 pb-16 md:pb-24">
+        <HeroPortrait />
+        <div className="relative max-w-[1240px] mx-auto px-6">
+          <div className="lg:max-w-[56%]">
             <p className="font-mono text-[11px] text-fg-subtle tracking-[0.2em] uppercase mb-8">
               {profile.role} · {profile.location} · {profile.timezone}
             </p>
@@ -52,12 +54,11 @@ export default function HomePage() {
             </div>
           </div>
 
-          <Portrait size={300} priority className="hidden lg:block" />
-        </div>
+          <Portrait size={260} className="lg:hidden mt-12" showScale={false} />
 
         {/* Quiet proof strip. Every number is computed from the project
             list, so it cannot disagree with the page it links to. */}
-        <dl className="grid grid-cols-2 md:grid-cols-4 gap-px mt-16 md:mt-24 border border-border rounded-md overflow-hidden bg-border">
+          <dl className="grid grid-cols-2 md:grid-cols-4 gap-px mt-16 md:mt-24 border border-line rounded-md overflow-hidden bg-line lg:max-w-[56%]">
           {[
             { v: `${counts.years}+`, k: "Years in production GIS" },
             { v: String(counts.projects), k: "Projects documented" },
@@ -76,7 +77,8 @@ export default function HomePage() {
               </dd>
             </div>
           ))}
-        </dl>
+          </dl>
+        </div>
       </section>
 
       {/* ═══ CLIENTS ═════════════════════════════════════════ */}

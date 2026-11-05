@@ -1,5 +1,6 @@
 import Image from "next/image"
 import StackTag from "@/components/StackTag"
+import AgentFlowCover from "./AgentFlowCover"
 import type { Project } from "@/content/types"
 
 function clientLabel(p: Project): string {
@@ -139,6 +140,8 @@ export default function ProjectCard({
             className="object-cover object-top"
           />
         </div>
+      ) : project.cover === "agent-flow" ? (
+        <AgentFlowCover tall={isFull} />
       ) : project.plate ? (
         <Plate plate={project.plate} tall={isFull} />
       ) : null}

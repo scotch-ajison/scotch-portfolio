@@ -92,15 +92,6 @@ export const profile = {
         "Installed and configured GIS software on client servers and ran front-line support",
       ],
     },
-    {
-      company: "Senlis Consultancy",
-      role: "Remote Sensing Consultant",
-      period: "Project basis",
-      location: "Remote",
-      summary:
-        "Large drone-imagery datasets, post-flight data capture and feature digitisation.",
-      points: [],
-    },
   ],
 
   skills: [

@@ -79,6 +79,8 @@ export type Project = {
   stack: { label: string; variant: TagVariant }[]
   images: ProjectImage[]
   plate?: Plate
+  /** A drawn cover, for work with nothing photographable. */
+  cover?: "agent-flow"
   location?: { lat: number; lng: number; label: string }
   visibility: Visibility
   /** ISO date. Drives sitemap lastModified — never `new Date()`. */

@@ -1,14 +1,12 @@
 import type { Project } from "./types"
 
+import cbzMortgages from "@/assets/images/cbz-mortgages.webp"
 import ecadastrePortal from "@/assets/images/ecadastre-portal.webp"
 import ihcPortal from "@/assets/images/ihc-portal.webp"
 import potrazOdc from "@/assets/images/potraz-odc.webp"
-import fieldPackStandalone from "@/assets/images/field-pack-standalone.webp"
 import fieldPackPanel from "@/assets/images/field-pack-panel.webp"
 import fieldPackBasemap from "@/assets/images/field-pack-basemap.webp"
 import fieldPackSite from "@/assets/images/field-pack-site.webp"
-import fieldPackRoad from "@/assets/images/field-pack-road.webp"
-import fieldPackDemo from "@/assets/images/field-pack-demo.webp"
 import wardDensity from "@/assets/images/ward-density.webp"
 import opsHeatmap from "@/assets/images/ops-heatmap.webp"
 import opsRecords from "@/assets/images/ops-records.webp"
@@ -28,7 +26,7 @@ import opsReporting from "@/assets/images/ops-reporting.webp"
 export const projects: Project[] = [
   {
     slug: "zimbabwe-ecadastre",
-    order: 1,
+    order: 2,
     title: "Zimbabwe National eCadastre",
     role: "GIS systems architect and integrations lead, on the delivering team",
     period: "2022 — present",
@@ -70,7 +68,7 @@ export const projects: Project[] = [
 
   {
     slug: "cbz-gis-mortgage",
-    order: 2,
+    order: 3,
     title: "CBZ GIS Mortgage Platform",
     role: "GIS systems architect, on the delivering team",
     period: "2022 — 2023",
@@ -97,7 +95,14 @@ export const projects: Project[] = [
       { label: "OpenLayers", variant: "electric" },
       { label: "REST + SOAP", variant: "electric" },
     ],
-    images: [],
+    images: [
+      {
+        src: cbzMortgages,
+        alt: "CBZ Bank campaign artwork for CBZ Diaspora Mortgages, headlined 'Introducing flexible and affordable CBZ Diaspora Mortgages', with the CBZ Bank logo.",
+        caption: "CBZ's own campaign for the mortgage product the platform serves.",
+        credit: "Artwork © CBZ Bank",
+      },
+    ],
     location: { lat: -17.8292, lng: 31.0522, label: "Harare" },
     visibility: { listed: true, featured: true },
     updatedAt: "2026-08-19",
@@ -105,7 +110,7 @@ export const projects: Project[] = [
 
   {
     slug: "drone-outreach-agent",
-    order: 3,
+    order: 4,
     title: "Autonomous lead and outreach agent",
     role: "Author",
     period: "2026",
@@ -115,7 +120,7 @@ export const projects: Project[] = [
       kind: "anonymised",
       clientDescriptor: "A commercial drone-services company",
     },
-    plate: { mark: "AI", caption: "Lead and outreach agent" },
+    cover: "agent-flow",
     links: {},
     accessNote: "An internal system for a client — no public URL.",
     problem:
@@ -144,7 +149,7 @@ export const projects: Project[] = [
 
   {
     slug: "field-pack",
-    order: 4,
+    order: 5,
     title: "Field Pack — orthomosaics without GIS",
     role: "Author. Open source, MIT",
     period: "2026",
@@ -172,32 +177,19 @@ export const projects: Project[] = [
     ],
     images: [
       {
-        src: fieldPackStandalone,
-        alt: "The Field Pack standalone viewer showing an aerial orthomosaic of a site, opened directly from the filesystem with no server running.",
-        caption: "The offline viewer — one HTML file, one PMTiles archive, no server.",
+        src: fieldPackPanel,
+        alt: "The Field Pack dock inside QGIS, showing the packing options for converting a project or orthophoto into a single PMTiles archive.",
+        caption: "The QGIS dock. The library underneath runs headless.",
       },
       {
-        src: fieldPackPanel,
-        alt: "The Field Pack dock inside QGIS, showing the packing options for converting a project into a PMTiles archive.",
-        caption: "The QGIS dock. The library underneath runs headless.",
+        src: fieldPackBasemap,
+        alt: "The Field Pack offline viewer with a basemap layer active beneath packed survey data.",
+        caption: "Basemaps stay switchable inside the packed viewer.",
       },
       {
         src: fieldPackSite,
         alt: "High-resolution drone orthomosaic of a site rendered in the Field Pack viewer with vector overlays.",
         caption: "A packed orthomosaic at full zoom in the viewer.",
-      },
-      {
-        src: fieldPackBasemap,
-        alt: "The Field Pack viewer with a basemap layer active beneath the packed survey data.",
-        caption: "Basemaps stay switchable inside the packed viewer.",
-      },
-      {
-        src: fieldPackRoad,
-        alt: "Linear road survey data displayed in the Field Pack offline viewer.",
-      },
-      {
-        src: fieldPackDemo,
-        alt: "The Field Pack packing workflow running end to end from QGIS project to shareable archive.",
       },
     ],
     visibility: { listed: true, featured: true },
@@ -206,7 +198,7 @@ export const projects: Project[] = [
 
   {
     slug: "crop-disease-diagnosis",
-    order: 5,
+    order: 6,
     title: "Crop-disease diagnosis from a photograph",
     role: "Author. Open source",
     period: "2026",
@@ -339,7 +331,7 @@ export const projects: Project[] = [
 
   {
     slug: "ward-population-gis",
-    order: 9,
+    order: 10,
     title: "Repairing a national ward population layer",
     role: "Author",
     period: "2026",
@@ -377,7 +369,7 @@ export const projects: Project[] = [
 
   {
     slug: "ministry-land-information-system",
-    order: 10,
+    order: 11,
     title: "Land Information System",
     role: "Lead developer",
     period: "2022 — 2023",
@@ -409,7 +401,7 @@ export const projects: Project[] = [
 
   {
     slug: "potraz-monitoring",
-    order: 6,
+    order: 1,
     title: "Results-based monitoring systems",
     role: "Sole developer, architecture to deployment",
     period: "2023 — 2025",
@@ -451,7 +443,7 @@ export const projects: Project[] = [
 
   {
     slug: "sadc-artisanal-mining",
-    order: 11,
+    order: 12,
     title: "Artisanal mining across eight countries",
     role: "GIS specialist",
     period: "2022",
@@ -481,7 +473,7 @@ export const projects: Project[] = [
 
   {
     slug: "zrbf-spatial-data-warehouses",
-    order: 12,
+    order: 13,
     title: "Spatial data warehouses, ten district councils",
     role: "GIS specialist & deployment",
     period: "2020 — 2021",
@@ -511,7 +503,7 @@ export const projects: Project[] = [
 
   {
     slug: "covid-response-dashboard",
-    order: 13,
+    order: 14,
     title: "COVID-19 spatial response dashboard",
     role: "Developer",
     period: "2020 — 2021",
@@ -542,7 +534,7 @@ export const projects: Project[] = [
 
   {
     slug: "earth-engine-index-explorer",
-    order: 14,
+    order: 15,
     title: "Vegetation index explorer",
     role: "Author",
     period: "2026",
@@ -573,7 +565,7 @@ export const projects: Project[] = [
 
   {
     slug: "investor-hosting",
-    order: 15,
+    order: 9,
     title: "Investor Hosting Centre",
     role: "Developer",
     period: "2026",

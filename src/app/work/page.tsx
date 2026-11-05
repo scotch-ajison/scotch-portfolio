@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 }
 
 export default function WorkPage() {
-  const spans = rhythm(listed.length)
+  const spans = rhythm(listed)
 
   return (
     <>

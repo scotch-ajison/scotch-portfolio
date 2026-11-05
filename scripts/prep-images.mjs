@@ -56,6 +56,23 @@ const MANIFEST = [
     crop: { left: 0, top: 96, width: 1080, height: 720 },
   },
 
+  // ── A tall crop of the same frame, for the full-height hero panel ──
+  {
+    slug: "portrait-tall",
+    source: `${REPO_PHOTOS}/scotch-desk.jpg`,
+    maxWidth: 900,
+    quality: 86,
+    crop: { left: 230, top: 40, width: 760, height: 952 },
+  },
+
+  // ── CBZ Diaspora Mortgages — the bank's own campaign artwork ──
+  {
+    slug: "cbz-mortgages",
+    source: `${REPO_PHOTOS}/cbz-diaspora-mortgages.jpg`,
+    maxWidth: 1400,
+    quality: 82,
+  },
+
   // ── Zimbabwe National eCadastre (public portal) ───────────
   // Captured from the live site with headless Chrome. Cropped above the
   // first-run tooltip and the support widget, both of which are state of
