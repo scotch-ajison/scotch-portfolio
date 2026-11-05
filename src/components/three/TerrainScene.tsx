@@ -98,8 +98,9 @@ function Terrain() {
 export default function TerrainScene() {
   return (
     <Canvas
+      dpr={[1, 1.5]}
       camera={{ position: [0, 4.5, 9], fov: 62 }}
-      gl={{ antialias: true, alpha: true }}
+      gl={{ antialias: false, alpha: true, powerPreference: "low-power" }}
       style={{ background: "transparent" }}
     >
       <ambientLight intensity={0.05} />

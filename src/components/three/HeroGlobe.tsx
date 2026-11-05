@@ -292,8 +292,9 @@ function Globe() {
 export default function HeroGlobe() {
   return (
     <Canvas
+      dpr={[1, 1.5]}
       camera={{ position: [0, 0.8, 6.2], fov: 52 }}
-      gl={{ antialias: true, alpha: true }}
+      gl={{ antialias: false, alpha: true, powerPreference: "low-power" }}
       style={{ background: "transparent", width: "100%", height: "100%" }}
     >
       <Stars radius={220} depth={70} count={6000} factor={4} saturation={0} fade speed={0.18} />

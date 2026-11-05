@@ -125,8 +125,9 @@ function MiniGlobe() {
 export default function ContactGlobe() {
   return (
     <Canvas
+      dpr={[1, 1.5]}
       camera={{ position: [0, 0.3, 4], fov: 38 }}
-      gl={{ antialias: true, alpha: true }}
+      gl={{ antialias: false, alpha: true, powerPreference: "low-power" }}
       style={{ background: "transparent" }}
     >
       <MiniGlobe />

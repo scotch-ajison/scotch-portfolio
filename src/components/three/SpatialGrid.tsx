@@ -121,8 +121,9 @@ function Grid() {
 export default function SpatialGrid() {
   return (
     <Canvas
+      dpr={[1, 1.5]}
       camera={{ position: [0, 6, 10], fov: 44 }}
-      gl={{ antialias: true, alpha: true }}
+      gl={{ antialias: false, alpha: true, powerPreference: "low-power" }}
       style={{ background: "transparent" }}
     >
       <Grid />
