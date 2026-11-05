@@ -79,28 +79,29 @@ function notificationEmail(d: Enquiry) {
 
   const row = (k: string, v: string) => `
     <tr>
-      <td style="padding:11px 0;border-bottom:1px solid #232326;color:#8A8782;font-size:11px;letter-spacing:.12em;text-transform:uppercase;vertical-align:top;width:132px">${k}</td>
-      <td style="padding:11px 0;border-bottom:1px solid #232326;color:#F0EDE7;font-size:14px">${v}</td>
+      <td style="padding:10px 0;border-bottom:1px solid #e4e1db;color:#6f6c65;font-size:11px;letter-spacing:.12em;text-transform:uppercase;vertical-align:top;width:120px">${k}</td>
+      <td style="padding:10px 0;border-bottom:1px solid #e4e1db;color:#16161a;font-size:14px">${v}</td>
     </tr>`
 
   const html = `
-  <div style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;max-width:600px;margin:0 auto;padding:36px;background:#0B0B0C;color:#F0EDE7">
-    <div style="border-bottom:2px solid #E8542B;padding-bottom:18px;margin-bottom:26px">
-      <div style="font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:#E8542B">New enquiry</div>
-      <div style="font-size:22px;font-weight:600;margin-top:7px">${escapeHtml(d.name)} · ${escapeHtml(d.organization)}</div>
+  <div style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;max-width:600px;margin:0 auto;padding:32px 28px;background:#ffffff;color:#16161a">
+    <div style="border-bottom:2px solid #c43d12;padding-bottom:16px;margin-bottom:24px">
+      <div style="font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:#c43d12;font-weight:600">New enquiry</div>
+      <div style="font-size:21px;font-weight:600;margin-top:6px;color:#16161a">${escapeHtml(d.name)}</div>
+      <div style="font-size:14px;color:#55534e;margin-top:2px">${escapeHtml(d.organization)}</div>
     </div>
     <table style="width:100%;border-collapse:collapse">
-      ${row("Email", `<a href="mailto:${encodeURIComponent(d.email)}" style="color:#E8542B;text-decoration:none">${escapeHtml(d.email)}</a>`)}
+      ${row("Email", `<a href="mailto:${encodeURIComponent(d.email)}" style="color:#c43d12;text-decoration:none">${escapeHtml(d.email)}</a>`)}
       ${row("Project", escapeHtml(label))}
       ${budget ? row("Budget", escapeHtml(budget)) : ""}
     </table>
-    <div style="margin-top:26px">
-      <div style="color:#8A8782;font-size:11px;letter-spacing:.12em;text-transform:uppercase;margin-bottom:10px">Message</div>
-      <div style="color:#B5B1AA;font-size:15px;line-height:1.7">${escapeHtmlBr(d.message)}</div>
+    <div style="margin-top:24px">
+      <div style="color:#6f6c65;font-size:11px;letter-spacing:.14em;text-transform:uppercase;margin-bottom:8px">Message</div>
+      <div style="font-size:15px;line-height:1.7;color:#333330">${escapeHtmlBr(d.message)}</div>
     </div>
-    <div style="margin-top:32px;padding-top:20px;border-top:1px solid #232326">
-      <a href="mailto:${encodeURIComponent(d.email)}" style="display:inline-block;background:#E8542B;color:#0B0B0C;text-decoration:none;font-weight:700;font-size:14px;padding:11px 24px;border-radius:6px">Reply to ${escapeHtml(d.name)}</a>
-      <p style="margin-top:18px;color:#56534F;font-size:11px">Sent from the contact form at ${escapeHtml(siteUrl)}</p>
+    <div style="margin-top:28px;padding-top:18px;border-top:1px solid #e4e1db">
+      <a href="mailto:${encodeURIComponent(d.email)}" style="display:inline-block;background:#c43d12;color:#ffffff;text-decoration:none;font-weight:600;font-size:14px;padding:11px 22px;border-radius:6px">Reply to ${escapeHtml(d.name)}</a>
+      <p style="margin-top:16px;color:#8a8781;font-size:11px">Sent from the contact form at ${escapeHtml(siteUrl)}</p>
     </div>
   </div>`
 
