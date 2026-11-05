@@ -76,23 +76,56 @@ never needs the sources.
 
 ### Sending domain — still to do
 
-The route currently falls back to `onboarding@resend.dev`, Resend's shared
-sandbox sender. **It only delivers to the Resend account owner's own verified
-address**, so it works today by accident and will stop the moment the recipient
-changes. To fix it:
+**Current state, measured rather than assumed.** The route falls back to
+`onboarding@resend.dev`, Resend's shared sender. Enquiries *are* delivered —
+Resend accepts them and returns a message id, and they reach the inbox — but
+**Gmail files them as spam**, which is what a shared sender writing to a cold
+recipient earns. They were arriving in the spam folder for days before anyone
+looked there.
+
+Two consequences, and the second is the one that matters:
+
+- Notifications land in spam, so a filter on the `[Portfolio]` subject tag is
+  the stopgap.
+- **The auto-reply to the enquirer cannot send at all.** Resend will not let
+  the shared address write to a stranger, so anyone who fills in the form gets
+  no acknowledgement.
+
+To fix both:
 
 1. Resend → Domains → add `scotchajison.com`, pick a region, copy the records.
-2. At GoDaddy (the nameservers are `ns25/ns26.domaincontrol.com`), add them. In
-   the Host field type `send`, **not** `send.scotchajison.com` — GoDaddy appends
-   the domain, and a FQDN becomes `send.scotchajison.com.scotchajison.com`.
+2. At GoDaddy (nameservers are `ns25/ns26.domaincontrol.com`), add them. In the
+   Host field type `send`, **not** `send.scotchajison.com` — GoDaddy appends the
+   domain, so a FQDN becomes `send.scotchajison.com.scotchajison.com`.
    - `TXT` `send` → `v=spf1 include:amazonses.com ~all`
    - `MX`  `send` → the `feedback-smtp.<region>.amazonses.com` host Resend shows, priority 10
    - `TXT` `resend._domainkey` → the DKIM value, no surrounding quotes
-3. Wait for Resend to show **Verified**, then set `RESEND_FROM_*` in Vercel.
+3. Wait for Resend to show **Verified**, then point the senders at the domain:
+
+```bash
+printf 'Scotch Ajison <notifications@scotchajison.com>' | npx vercel env add RESEND_FROM_NOTIFICATIONS production
+```
+
+```bash
+printf 'Scotch Ajison <hello@scotchajison.com>' | npx vercel env add RESEND_FROM_REPLIES production
+```
+
+Environment changes need a redeploy to take effect — push anything, or run
+`npx vercel --prod`.
 
 A `_dmarc` record already exists at `p=quarantine` with relaxed alignment, so
-mail will pass once DKIM and SPF are live — but until then it goes to spam
-rather than being accepted unauthenticated. Verify before switching the sender.
+mail passes once DKIM and SPF are live. Do not switch the `from` addresses
+before Resend shows **Verified**: sending from an unverified domain under
+`p=quarantine` is worse than the shared sender, not better.
+
+### Diagnosing a missing enquiry
+
+The route logs and returns Resend's message id. The production key is
+**send-only**, so neither the code nor the CLI can read delivery status —
+Resend answers `This API key is restricted to only send emails` for both
+`/domains` and `/emails/:id`. Delivery state lives in the Resend dashboard.
+Before suspecting the pipeline, search Gmail for `from:resend.dev`, which
+covers Spam and Promotions where an inbox scroll does not.
 
 **The apex has no MX record,** so `scotchajison.com` cannot *receive* mail. The
 `send.` MX above is for bounce handling on a subdomain and does not change
