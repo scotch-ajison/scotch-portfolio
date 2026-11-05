@@ -1,5 +1,6 @@
 import type { Project } from "./types"
 
+import ecadastrePortal from "@/assets/images/ecadastre-portal.webp"
 import fieldPackStandalone from "@/assets/images/field-pack-standalone.webp"
 import fieldPackPanel from "@/assets/images/field-pack-panel.webp"
 import fieldPackBasemap from "@/assets/images/field-pack-basemap.webp"
@@ -27,7 +28,7 @@ export const projects: Project[] = [
     slug: "zimbabwe-ecadastre",
     order: 1,
     title: "Zimbabwe National eCadastre",
-    role: "GIS systems architect, on the delivering team",
+    role: "GIS systems architect and integrations lead, on the delivering team",
     period: "2022 — present",
     scale: "National land register",
     status: "live",
@@ -35,24 +36,31 @@ export const projects: Project[] = [
     plate: { mark: "SG", caption: "Department of the Surveyor General" },
     links: { live: "http://zimcadastre.co.zw" },
     problem:
-      "Zimbabwe's cadastral record was paper-based and fragmented. A surveyor lodging a diagram, an examiner checking it and a citizen searching a title were all working from different copies of the truth, and none of them could query it spatially.",
+      "Zimbabwe's cadastral record was paper-based and fragmented. A surveyor lodging a diagram, an examiner checking it and a citizen searching a title were all working from different copies of the truth, and none of them could query it spatially. Worse, the registers that had to agree with each other — deeds, mining, the investment one-stop shop — had no way to talk at all.",
     approach:
-      "A national digital cadastre: PostGIS geodatabases designed end to end, the statutory lodgement-to-examination workflow modelled in GeoDjango, geodesy control layers, and authoritative parcel layers published as OGC services through GeoServer and consumed in OpenLayers. Bulk ingest of legacy records with geometric and topological validation, so examiners work from exceptions rather than reading every submission.",
+      "A national digital cadastre: PostGIS geodatabases designed end to end, the statutory lodgement-to-examination workflow modelled in GeoDjango, geodesy control layers, and authoritative parcel layers published as OGC services through GeoServer and consumed in OpenLayers. Bulk ingest of legacy records with geometric and topological validation, so examiners work from exceptions rather than reading every submission. I designed and built every API, and the integrations that put the eCadastre in conversation with the Deeds system, the One Stop Shop and the Mining Cadastre.",
     outcome:
-      "Live in production and in daily use by surveyors, examiners and the public. I owned the spatial architecture — the schema, the validation rules and the service layer — as part of a team of five-plus developers.",
+      "Live in production and in daily use by surveyors, examiners and the public, serving property search, e-maps, cadastral and geodetic services. I owned the spatial architecture — schema, validation rules and service layer — and the integration layer across four national registers, as part of a team of five-plus developers.",
     metrics: [
       { label: "Status", value: "Live", note: "In daily production use" },
-      { label: "Scope", value: "National", note: "Zimbabwe land register" },
-      { label: "Team", value: "5+ devs", note: "Architect on the spatial layer" },
+      { label: "Integrations", value: "4 registers", note: "Deeds, One Stop Shop, Mining Cadastre" },
+      { label: "APIs", value: "Designed & built", note: "The whole integration layer" },
     ],
     stack: [
       { label: "GeoDjango", variant: "violet" },
       { label: "PostGIS", variant: "violet" },
       { label: "GeoServer", variant: "violet" },
+      { label: "REST APIs", variant: "electric" },
+      { label: "System integration", variant: "violet" },
       { label: "OpenLayers", variant: "electric" },
-      { label: "Python", variant: "electric" },
     ],
-    images: [],
+    images: [
+      {
+        src: ecadastrePortal,
+        alt: "The Zimbabwe eCadastre portal home page, showing the Government of Zimbabwe and Department of the Surveyor General branding and links to property search, e-maps, cadastral services and geodetic services.",
+        caption: "The live portal — property search, e-maps, cadastral and geodetic services.",
+      },
+    ],
     location: { lat: -17.8252, lng: 31.0335, label: "Harare" },
     visibility: { listed: true, featured: true },
     updatedAt: "2026-10-02",

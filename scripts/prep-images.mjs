@@ -56,6 +56,21 @@ const MANIFEST = [
     crop: { left: 0, top: 96, width: 1080, height: 720 },
   },
 
+  // ── Zimbabwe National eCadastre (public portal) ───────────
+  // Captured from the live site with headless Chrome. Cropped above the
+  // first-run tooltip and the support widget, both of which are state of
+  // that session rather than part of the product.
+  {
+    slug: "ecadastre-portal",
+    source: `${REPO_PHOTOS}/ecadastre-portal.png`,
+    maxWidth: 1600,
+    quality: 76,
+    crop: { left: 0, top: 0, width: 1600, height: 580 },
+    // The portal's hero carries a heavy dark scrim, which reads as muddy on
+    // a white card. A modest lift, not a re-grade.
+    lift: true,
+  },
+
   // ── Field Pack — QGIS plugin (his own, MIT, public) ───────
   { slug: "field-pack-standalone", source: `${QGIS}/standalone.png`, maxWidth: 1600, quality: 72 },
   { slug: "field-pack-panel", source: `${QGIS}/fieldpack.png`, maxWidth: 1600, quality: 72 },
@@ -117,6 +132,10 @@ async function run() {
       withoutEnlargement: !upscale,
       kernel: "lanczos3",
     })
+
+    if (item.lift) {
+      pipe = pipe.modulate({ brightness: 1.16, saturation: 1.08 }).linear(1.05, -4)
+    }
 
     if (item.portrait) {
       // Lanczos invents no detail, so a light unsharp mask is what removes
