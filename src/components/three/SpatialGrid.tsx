@@ -68,9 +68,12 @@ function Grid() {
       ringsRef.current.children.forEach((child, i) => {
         const progress = ((t.current * 0.4 + ringGeos[i].phase) % 1)
         child.scale.setScalar(1 + progress * 5)
-        ;(child as THREE.LineSegments).material &&
-          ((child as THREE.LineSegments).material as THREE.LineBasicMaterial).opacity !== undefined &&
-          (((child as THREE.LineSegments).material as THREE.LineBasicMaterial).opacity = (1 - progress) * 0.4)
+        const material = (child as THREE.LineSegments).material as
+          | THREE.LineBasicMaterial
+          | undefined
+        if (material && "opacity" in material) {
+          material.opacity = (1 - progress) * 0.4
+        }
       })
     }
 

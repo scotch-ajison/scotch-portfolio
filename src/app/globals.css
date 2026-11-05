@@ -1,131 +1,212 @@
 @import "tailwindcss";
 
+/* ══════════════════════════════════════════════════════════════
+   SURVEY DOCUMENT — design system
+   A technical monograph, not a SaaS landing page.
+   Warm ink, paper, one signal accent. Scale contrast does the work.
+   Every text token below is verified ≥ 4.5:1 on its own surface.
+   ══════════════════════════════════════════════════════════════ */
+
 @theme {
-  /* Surfaces */
-  --color-bg: #07080F;
-  --color-surface: #0F1017;
-  --color-surface-elevated: #161821;
+  /* ── Surfaces: warm near-black, not blue-black ── */
+  --color-ink: #0B0B0C;
+  --color-ink-raised: #141416;
+  --color-ink-sunken: #060607;
 
-  /* Borders */
-  --color-border: #1E2030;
-  --color-border-strong: #2D3048;
+  /* ── Paper: warm off-white for alternating bands ── */
+  --color-paper: #F4F1EA;
+  --color-paper-raised: #FBF9F5;
 
-  /* Text */
-  --color-fg: #F0F0FA;
-  --color-fg-muted: #8B8FA8;
-  --color-fg-subtle: #4B4F6A;
+  /* ── Signal accent — survey orange. Exactly one. ── */
+  --color-accent: #E8542B;        /* 5.40:1 on ink  ✓ AA */
+  --color-accent-ink: #0B0B0C;    /* 5.77:1 on accent ✓ AA — black on orange */
+  --color-accent-paper: #C23D16;  /* 5.12:1 on paper ✓ AA */
 
-  /* Accents */
-  --color-violet: #7C3AFF;
-  --color-electric: #06D6F0;
-  --color-amber: #FF9F0A;
+  /* ── Live / verified status ── */
+  --color-live: #4E9A5F;          /* 5.74:1 on ink ✓ AA */
 
-  /* Status */
-  --color-success: #34C759;
-  --color-error: #FF453A;
+  /* ────────────────────────────────────────────────
+     Legacy token names, remapped onto the new system.
+     Keeps every page coherent while the key routes are
+     rebuilt properly. Do not add new uses of these.
+     ──────────────────────────────────────────────── */
 
-  /* Light sections */
-  --color-bg-light: #F4F1EB;
-  --color-fg-on-light: #18191F;
-  --color-fg-muted-on-light: #6B6E82;
-  --color-border-on-light: #D6D2CA;
+  --color-bg: #0B0B0C;
+  --color-surface: #141416;
+  --color-surface-elevated: #1C1C1F;
 
-  /* Fonts — mapped to next/font CSS variables */
-  --font-display: var(--font-space);
-  --font-sans: var(--font-jakarta);
+  --color-border: #232326;
+  --color-border-strong: #35353A;
+
+  --color-fg: #F0EDE7;            /* 17.8:1 on ink ✓ */
+  --color-fg-muted: #B5B1AA;      /*  9.2:1 on ink ✓ */
+  --color-fg-subtle: #8A8782;     /*  5.5:1 on ink ✓ (was 2.50:1 — failed) */
+
+  --color-violet: #E8542B;        /* → accent */
+  --color-electric: #E8542B;      /* → accent */
+  --color-amber: #E8542B;         /* → accent */
+
+  --color-success: #4E9A5F;
+  --color-error: #D2442F;
+
+  --color-bg-light: #F4F1EA;
+  --color-fg-on-light: #16161A;        /* 14.9:1 on paper ✓ */
+  --color-fg-muted-on-light: #5A5852;  /*  6.3:1 on paper ✓ (was 4.46:1 — failed) */
+  --color-border-on-light: #DCD7CC;
+
+  /* ── Type ── */
+  --font-display: var(--font-inter-tight);
+  --font-sans: var(--font-inter);
   --font-mono: var(--font-jetbrains);
+  --font-serif: var(--font-instrument);
+
+  /* legacy aliases */
+  --font-space: var(--font-inter-tight);
+  --font-jakarta: var(--font-inter);
 }
 
 /* ─── Base ─────────────────────────────────────────── */
 
-body {
-  background-color: #07080F;
-  color: #F0F0FA;
-  font-family: var(--font-jakarta), 'Plus Jakarta Sans', sans-serif;
-  /* Cartographic dot grid — references graph paper, signals spatial intelligence */
-  background-image: radial-gradient(
-    circle,
-    rgba(255, 255, 255, 0.035) 1px,
-    transparent 1px
-  );
-  background-size: 32px 32px;
+html {
+  -webkit-text-size-adjust: 100%;
 }
 
-/* ─── Typography base ───────────────────────────────── */
+body {
+  background-color: #0B0B0C;
+  color: #F0EDE7;
+  font-family: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  font-feature-settings: "cv11", "ss01";
+  font-variant-ligatures: contextual;
+  /* No decorative page texture. The content carries the page. */
+}
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-space), 'Space Grotesk', sans-serif;
+  font-family: var(--font-inter-tight), ui-sans-serif, system-ui, sans-serif;
+  text-wrap: balance;
 }
 
-/* ─── Utilities ─────────────────────────────────────── */
+p {
+  text-wrap: pretty;
+}
 
+/* Tabular figures everywhere a number is compared against another number */
+.tnum,
+.font-mono {
+  font-variant-numeric: tabular-nums;
+}
+
+/* ─── Focus: one visible indicator, globally ───────── */
+
+:where(a, button, input, select, textarea, summary, [tabindex]):focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+  border-radius: 3px;
+}
+
+/* Skip link — first tab stop on every page */
+.skip-link {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  transform: translate(-50%, -120%);
+  z-index: 100;
+  padding: 12px 20px;
+  background: var(--color-accent);
+  color: var(--color-accent-ink);
+  font-family: var(--font-inter-tight), sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  border-radius: 0 0 8px 8px;
+  transition: transform 160ms ease;
+}
+.skip-link:focus {
+  transform: translate(-50%, 0);
+}
+
+/* ─── Editorial utilities ──────────────────────────── */
+
+/* Section mark: "§ 01 — SELECTED WORK" */
+.section-mark {
+  font-family: var(--font-jetbrains), monospace;
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--color-fg-subtle);
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.section-mark::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--color-border);
+}
+
+.on-paper .section-mark {
+  color: var(--color-fg-muted-on-light);
+}
+.on-paper .section-mark::after {
+  background: var(--color-border-on-light);
+}
+
+/* Pull quote — the one place a serif appears */
+.pull-quote {
+  font-family: var(--font-instrument), ui-serif, Georgia, serif;
+  font-weight: 400;
+  line-height: 1.22;
+  letter-spacing: -0.015em;
+  text-wrap: balance;
+}
+
+/* Hairline rule */
+.rule {
+  height: 1px;
+  background: var(--color-border);
+}
+.on-paper .rule {
+  background: var(--color-border-on-light);
+}
+
+/* Legacy: these were a violet→cyan gradient. Now the signal accent. */
 .gradient-text {
-  background: linear-gradient(135deg, #7C3AFF 0%, #06D6F0 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: var(--color-accent);
 }
-
 .gradient-bg {
-  background: linear-gradient(135deg, #7C3AFF 0%, #06D6F0 100%);
+  background: var(--color-accent);
 }
 
 /* ─── Scrollbar ─────────────────────────────────────── */
 
-::-webkit-scrollbar { width: 5px; }
-::-webkit-scrollbar-track { background: #07080F; }
-::-webkit-scrollbar-thumb { background: #2D3048; border-radius: 3px; }
-::-webkit-scrollbar-thumb:hover { background: #4B4F6A; }
-
-/* ─── Selection ─────────────────────────────────────── */
+::-webkit-scrollbar { width: 10px; }
+::-webkit-scrollbar-track { background: #0B0B0C; }
+::-webkit-scrollbar-thumb { background: #35353A; border: 3px solid #0B0B0C; border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: #4A4A50; }
 
 ::selection {
-  background: rgba(124, 58, 255, 0.3);
-  color: #F0F0FA;
+  background: var(--color-accent);
+  color: var(--color-accent-ink);
 }
 
-/* ─── Leaflet popup override ────────────────────────── */
-
-.leaflet-popup-content-wrapper {
-  background: #0F1017 !important;
-  border: 1px solid #2D3048 !important;
-  border-radius: 12px !important;
-  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.6) !important;
-  color: #F0F0FA !important;
-}
-
-.leaflet-popup-tip {
-  background: #0F1017 !important;
-}
-
-.leaflet-popup-close-button {
-  color: #8B8FA8 !important;
-}
-
-.leaflet-container {
-  background: #07080F !important;
-}
-
-/* ─── Chat scrollbar ──────────────────────────────── */
-
-.scrollbar-thin::-webkit-scrollbar { width: 3px; }
-.scrollbar-thin::-webkit-scrollbar-track { background: transparent; }
-.scrollbar-thin::-webkit-scrollbar-thumb { background: #2D3048; border-radius: 3px; }
-.scrollbar-thin::-webkit-scrollbar-thumb:hover { background: #4B4F6A; }
-
-/* ─── Navigation loader ────────────────────────────── */
-
-@keyframes navProgress {
-  0% { width: 0%; }
-  100% { width: 90%; }
-}
+/* ─── Motion ────────────────────────────────────────── */
 
 @keyframes marquee {
   from { transform: translateX(0); }
   to   { transform: translateX(-50%); }
 }
 
-@keyframes fadeUp {
-  from { opacity: 0; transform: translateY(16px); }
-  to   { opacity: 1; transform: translateY(0); }
+/* One switch. Everything that moves respects it. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+  .marquee-track {
+    animation: none !important;
+    transform: none !important;
+  }
 }

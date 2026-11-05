@@ -1,11 +1,13 @@
 import { ImageResponse } from "next/og"
+import { siteUrl } from "@/lib/site"
 
 export const ogSize = { width: 1200, height: 630 }
 export const ogContentType = "image/png"
-export const ogAlt =
-  "Scotch Ajison — GIS Systems Architect & Spatial Intelligence Consultant"
+export const ogAlt = "Scotch Ajison — GIS Systems Architect"
 
-// Shared renderer for both opengraph-image and twitter-image.
+const host = siteUrl.replace(/^https?:\/\//, "")
+
+/** Shared by opengraph-image and twitter-image. */
 export function renderOgImage() {
   return new ImageResponse(
     (
@@ -16,90 +18,60 @@ export function renderOgImage() {
           display: "flex",
           flexDirection: "column",
           justifyContent: "space-between",
-          backgroundColor: "#07080F",
-          backgroundImage:
-            "radial-gradient(900px circle at 78% 18%, rgba(6,214,240,0.20), transparent 55%), radial-gradient(800px circle at 10% 95%, rgba(124,58,255,0.22), transparent 55%)",
-          padding: "72px 80px",
+          backgroundColor: "#0B0B0C",
+          padding: "68px 76px",
           fontFamily: "sans-serif",
         }}
       >
-        {/* Top: availability-free brand label */}
-        <div style={{ display: "flex", alignItems: "center", gap: 16 }}>
+        <div style={{ display: "flex", alignItems: "center", gap: 14 }}>
+          <div style={{ width: 34, height: 3, backgroundColor: "#E8542B" }} />
           <div
             style={{
-              width: 10,
-              height: 10,
-              borderRadius: 9999,
-              backgroundColor: "#06D6F0",
-            }}
-          />
-          <div
-            style={{
-              fontSize: 22,
-              letterSpacing: 6,
+              fontSize: 21,
+              letterSpacing: 5,
               textTransform: "uppercase",
-              color: "#06D6F0",
-              fontWeight: 600,
+              color: "#8A8782",
+              fontWeight: 500,
             }}
           >
-            GIS Systems Developer · Zimbabwe &amp; Beyond
+            GIS Systems Architect · Harare · UTC+2
           </div>
         </div>
 
-        {/* Headline */}
-        <div style={{ display: "flex", flexDirection: "column" }}>
-          <div
-            style={{
-              display: "flex",
-              flexWrap: "wrap",
-              fontSize: 86,
-              fontWeight: 700,
-              lineHeight: 1.02,
-              letterSpacing: -2,
-              color: "#F5F6FA",
-            }}
-          >
-            <span>Building&nbsp;</span>
-            <span style={{ color: "#7C3AFF" }}>spatial systems&nbsp;</span>
-            <span>that run nations</span>
-            <span style={{ color: "#7C3AFF" }}>.</span>
-          </div>
-        </div>
-
-        {/* Footer: name + role */}
         <div
           style={{
             display: "flex",
-            alignItems: "center",
+            flexWrap: "wrap",
+            fontSize: 72,
+            fontWeight: 600,
+            lineHeight: 1.04,
+            letterSpacing: -2.6,
+            color: "#F0EDE7",
+            maxWidth: 1000,
+          }}
+        >
+          <span>I build the spatial systems that land registries, banks and regulators&nbsp;</span>
+          <span style={{ color: "#E8542B" }}>run on.</span>
+        </div>
+
+        <div
+          style={{
+            display: "flex",
+            alignItems: "flex-end",
             justifyContent: "space-between",
+            borderTop: "1px solid #232326",
+            paddingTop: 26,
           }}
         >
           <div style={{ display: "flex", flexDirection: "column" }}>
-            <div style={{ fontSize: 40, fontWeight: 700, color: "#FFFFFF" }}>
+            <div style={{ fontSize: 36, fontWeight: 600, color: "#F0EDE7" }}>
               Scotch Ajison
             </div>
-            <div style={{ fontSize: 26, color: "#9CA3B4", marginTop: 4 }}>
-              Spatial Intelligence Consultant
+            <div style={{ fontSize: 22, color: "#8A8782", marginTop: 6 }}>
+              PostGIS · GeoDjango · GeoServer · Applied AI
             </div>
           </div>
-          <div
-            style={{
-              display: "flex",
-              alignItems: "center",
-              gap: 14,
-              fontSize: 22,
-              color: "#6B7280",
-            }}
-          >
-            <div
-              style={{
-                width: 56,
-                height: 2,
-                backgroundColor: "#FF9F0A",
-              }}
-            />
-            scotchajison.com
-          </div>
+          <div style={{ display: "flex", fontSize: 21, color: "#8A8782" }}>{host}</div>
         </div>
       </div>
     ),

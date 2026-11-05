@@ -2,6 +2,7 @@ import type { Metadata } from "next"
 import ScrollReveal from "@/components/ScrollReveal"
 import ContactForm from "@/components/ContactForm"
 import ContactGlobe from "@/components/three/ContactGlobeWrapper"
+import { profile } from "@/content/profile"
 
 export const metadata: Metadata = {
   title: "Contact",
@@ -78,10 +79,10 @@ export default function ContactPage() {
                         Email
                       </p>
                       <a
-                        href="mailto:sajison71@gmail.com"
+                        href={`mailto:${profile.email}`}
                         className="group flex items-center gap-2 text-fg hover:text-electric transition-colors font-medium"
                       >
-                        sajison71@gmail.com
+                        {profile.email}
                         <span className="text-fg-subtle group-hover:text-electric transition-colors text-xs">
                           →
                         </span>
@@ -93,12 +94,12 @@ export default function ContactPage() {
                         LinkedIn
                       </p>
                       <a
-                        href="https://www.linkedin.com/in/scotch-ajison-b16253229"
+                        href={profile.socials.linkedin}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="group flex items-center gap-2 text-fg hover:text-electric transition-colors font-medium"
                       >
-                        /in/scotchajison
+                        LinkedIn profile
                         <span className="text-fg-subtle group-hover:text-electric transition-colors text-xs">
                           ↗
                         </span>
@@ -109,12 +110,12 @@ export default function ContactPage() {
                       <p className="font-mono text-[11px] text-fg-subtle tracking-[0.15em] uppercase mb-2">
                         Location
                       </p>
-                      <p className="text-fg font-medium">Harare, Zimbabwe</p>
+                      <p className="text-fg font-medium">{profile.location}</p>
                       <p className="font-mono text-[11px] text-fg-subtle mt-1">
-                        17.83°S · 31.05°E
+                        {profile.coordinates.label}
                       </p>
                       <p className="font-mono text-[11px] text-fg-subtle/60 mt-0.5">
-                        Available for remote work globally
+                        {profile.timezoneNote}
                       </p>
                     </div>
 

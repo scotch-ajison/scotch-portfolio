@@ -83,10 +83,15 @@ function Network() {
           a.z + (b.z - a.z) * progress
         )
       })
-      const arr = new Float32Array(pos)
-      flowGeo.setAttribute("position", new THREE.Float32BufferAttribute(arr, 3))
-      flowGeo.attributes.position.needsUpdate = true
-      flowRef.current.geometry = flowGeo
+      // Write into the live geometry on the mesh and dispose the previous
+      // one, rather than mutating the memoised value — mutating a value
+      // passed to a hook is what the immutability rule is guarding against,
+      // and leaking geometries here would grow every frame.
+      const next = new THREE.BufferGeometry()
+      next.setAttribute("position", new THREE.Float32BufferAttribute(new Float32Array(pos), 3))
+      const previous = flowRef.current.geometry
+      flowRef.current.geometry = next
+      if (previous && previous !== flowGeo) previous.dispose()
     }
   })
 

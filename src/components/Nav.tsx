@@ -1,162 +1,161 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-
-const links = [
-  { href: "/work", label: "Work" },
-  { href: "/research", label: "Research" },
-  { href: "/services", label: "Services" },
-  { href: "/writing", label: "Writing" },
-]
+import { navRoutes } from "@/content/routes"
+import { profile } from "@/content/profile"
 
 export default function Nav() {
   const [scrolled, setScrolled] = useState(false)
   const [open, setOpen] = useState(false)
   const pathname = usePathname()
+  const triggerRef = useRef<HTMLButtonElement>(null)
+  const panelRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 20)
+    const onScroll = () => setScrolled(window.scrollY > 16)
+    onScroll()
     window.addEventListener("scroll", onScroll, { passive: true })
     return () => window.removeEventListener("scroll", onScroll)
   }, [])
 
+  // Lock the page behind the panel, close on Escape, and send focus back
+  // to the trigger on the way out.
   useEffect(() => {
-    setOpen(false)
-  }, [pathname])
+    if (!open) return
+    const prev = document.body.style.overflow
+    document.body.style.overflow = "hidden"
 
-  // Lock body scroll when menu is open
-  useEffect(() => {
-    if (open) {
-      document.body.style.overflow = "hidden"
-    } else {
-      document.body.style.overflow = ""
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setOpen(false)
+        triggerRef.current?.focus()
+      }
     }
+    document.addEventListener("keydown", onKey)
+    panelRef.current?.querySelector<HTMLElement>("a")?.focus()
+
     return () => {
-      document.body.style.overflow = ""
+      document.body.style.overflow = prev
+      document.removeEventListener("keydown", onKey)
     }
   }, [open])
+
+  const isActive = (href: string) =>
+    href === "/" ? pathname === "/" : pathname?.startsWith(href)
 
   return (
     <>
       <header
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        className={`fixed top-0 left-0 right-0 z-50 transition-colors duration-300 ${
           scrolled
-            ? "bg-bg/90 backdrop-blur-md border-b border-border"
-            : "bg-transparent"
+            ? "bg-ink/85 backdrop-blur-xl border-b border-border"
+            : "bg-transparent border-b border-transparent"
         }`}
       >
-        <nav className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
-          {/* Wordmark */}
-          <Link href="/" className="flex items-center gap-3 group">
-            <span className="font-display font-bold text-lg gradient-text leading-none tracking-tight">
-              SA
+        <nav
+          aria-label="Primary"
+          className="max-w-[1240px] mx-auto px-6 h-16 flex items-center justify-between gap-6"
+        >
+          <Link href="/" className="flex items-baseline gap-3 group shrink-0">
+            <span className="font-mono text-[13px] font-medium text-accent tracking-[0.1em]">
+              {profile.initials}
             </span>
-            <span className="h-4 w-px bg-border-strong hidden sm:block" />
-            <span className="font-display font-medium text-sm text-fg-muted tracking-tight hidden sm:block group-hover:text-fg transition-colors duration-200">
-              Scotch Ajison
+            <span className="font-display font-medium text-[15px] text-fg tracking-[-0.01em] hidden sm:block">
+              {profile.name}
             </span>
           </Link>
 
-          {/* Desktop links */}
-          <div className="hidden md:flex items-center gap-8">
-            {links.map((l) => (
+          <div className="hidden md:flex items-center gap-1">
+            {navRoutes.map((l) => (
               <Link
-                key={l.href}
-                href={l.href}
-                className={`relative font-sans text-sm font-medium py-1 transition-colors duration-150 ${
-                  pathname?.startsWith(l.href)
+                key={l.path}
+                href={l.path}
+                aria-current={isActive(l.path) ? "page" : undefined}
+                className={`relative font-sans text-[14px] px-3.5 py-2 rounded-md transition-colors duration-150 ${
+                  isActive(l.path)
                     ? "text-fg"
                     : "text-fg-muted hover:text-fg"
                 }`}
               >
                 {l.label}
-                {pathname?.startsWith(l.href) && (
-                  <span className="absolute -bottom-0.5 left-0 right-0 h-px bg-violet" />
+                {isActive(l.path) && (
+                  <span className="absolute bottom-0.5 left-3.5 right-3.5 h-px bg-accent" />
                 )}
               </Link>
             ))}
             <Link
               href="/contact"
-              className="font-display font-bold text-sm px-5 py-2.5 rounded-full bg-amber text-black
-                hover:opacity-90 hover:-translate-y-0.5 transition-all duration-200"
+              className="ml-3 font-display font-semibold text-[14px] px-4 py-2 rounded-md
+                bg-accent text-accent-ink hover:brightness-110 transition-[filter] duration-150"
             >
-              Let&apos;s Talk
+              Get in touch
             </Link>
           </div>
 
-          {/* Mobile hamburger */}
           <button
-            onClick={() => setOpen(!open)}
-            aria-label="Toggle menu"
-            className="md:hidden relative z-50 p-2 flex flex-col gap-[5px]"
+            ref={triggerRef}
+            onClick={() => setOpen((v) => !v)}
+            aria-label={open ? "Close menu" : "Open menu"}
+            aria-expanded={open}
+            aria-controls="mobile-menu"
+            className="md:hidden relative z-50 -mr-2 p-2 flex flex-col gap-[5px]"
           >
             <span
-              className={`block w-5 h-[1.5px] transition-all duration-300 origin-center ${
-                open
-                  ? "rotate-45 translate-y-[6.5px] bg-fg"
-                  : "bg-fg-muted"
+              className={`block w-5 h-[1.5px] bg-fg transition-transform duration-300 origin-center ${
+                open ? "rotate-45 translate-y-[6.5px]" : ""
               }`}
             />
             <span
-              className={`block w-5 h-[1.5px] bg-fg-muted transition-all duration-300 ${
-                open ? "opacity-0 scale-x-0" : ""
+              className={`block w-5 h-[1.5px] bg-fg transition-opacity duration-200 ${
+                open ? "opacity-0" : ""
               }`}
             />
             <span
-              className={`block w-5 h-[1.5px] transition-all duration-300 origin-center ${
-                open
-                  ? "-rotate-45 -translate-y-[6.5px] bg-fg"
-                  : "bg-fg-muted"
+              className={`block w-5 h-[1.5px] bg-fg transition-transform duration-300 origin-center ${
+                open ? "-rotate-45 -translate-y-[6.5px]" : ""
               }`}
             />
           </button>
         </nav>
       </header>
 
-      {/* Mobile slide-in menu */}
+      {/* Mobile panel. `inert` when closed, so its links are not focusable
+          while invisible — they were, before. */}
       <div
+        id="mobile-menu"
+        inert={!open}
         className={`fixed inset-0 z-40 md:hidden transition-opacity duration-300 ${
-          open
-            ? "opacity-100 pointer-events-auto"
-            : "opacity-0 pointer-events-none"
+          open ? "opacity-100" : "opacity-0 pointer-events-none"
         }`}
       >
-        {/* Backdrop */}
         <div
-          className="absolute inset-0 bg-black/60 backdrop-blur-sm"
+          className="absolute inset-0 bg-ink-sunken/80 backdrop-blur-sm"
           onClick={() => setOpen(false)}
         />
-
-        {/* Slide-in panel */}
         <div
-          className={`absolute top-0 left-0 h-full w-[280px] bg-surface border-r border-border
+          ref={panelRef}
+          className={`absolute top-0 right-0 h-full w-[300px] max-w-[85vw] bg-ink-raised border-l border-border
             flex flex-col transition-transform duration-300 ease-out ${
-              open ? "translate-x-0" : "-translate-x-full"
+              open ? "translate-x-0" : "translate-x-full"
             }`}
         >
-          {/* Logo area */}
           <div className="h-16 flex items-center px-6 border-b border-border">
-            <span className="font-display font-bold text-lg gradient-text leading-none tracking-tight">
-              SA
-            </span>
-            <span className="h-4 w-px bg-border-strong mx-3" />
-            <span className="font-display font-medium text-sm text-fg-muted tracking-tight">
-              Scotch Ajison
+            <span className="font-mono text-[13px] text-accent tracking-[0.1em]">
+              {profile.initials}
             </span>
           </div>
 
-          {/* Nav links */}
-          <div className="flex-1 flex flex-col px-6 py-8 gap-1">
-            {links.map((l) => (
+          <div className="flex-1 flex flex-col px-6 py-8">
+            {navRoutes.map((l) => (
               <Link
-                key={l.href}
-                href={l.href}
-                className={`font-sans text-lg font-medium py-3 transition-colors ${
-                  pathname?.startsWith(l.href)
-                    ? "text-fg"
-                    : "text-fg-muted hover:text-fg"
+                key={l.path}
+                href={l.path}
+                onClick={() => setOpen(false)}
+                aria-current={isActive(l.path) ? "page" : undefined}
+                className={`font-display text-xl py-3.5 border-b border-border transition-colors ${
+                  isActive(l.path) ? "text-accent" : "text-fg hover:text-accent"
                 }`}
               >
                 {l.label}
@@ -164,15 +163,18 @@ export default function Nav() {
             ))}
           </div>
 
-          {/* CTA at bottom */}
           <div className="px-6 py-6 border-t border-border">
             <Link
               href="/contact"
-              className="block text-center font-display font-bold text-sm px-5 py-3 rounded-full bg-amber text-black
-                hover:opacity-90 transition-all duration-200"
+              onClick={() => setOpen(false)}
+              className="block text-center font-display font-semibold text-[15px] px-5 py-3 rounded-md
+                bg-accent text-accent-ink"
             >
-              Let&apos;s Talk
+              Get in touch
             </Link>
+            <p className="font-mono text-[11px] text-fg-subtle mt-4 text-center">
+              {profile.coordinates.label}
+            </p>
           </div>
         </div>
       </div>
