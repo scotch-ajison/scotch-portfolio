@@ -1,7 +1,7 @@
 import Link from "next/link"
 import ScrollReveal from "@/components/ScrollReveal"
-import Portrait from "@/components/Portrait"
 import HeroPortrait from "@/components/HeroPortrait"
+import HeroPortraitMobile from "@/components/HeroPortraitMobile"
 import ProjectCard from "@/components/work/ProjectCard"
 import StackTag from "@/components/StackTag"
 import { profile } from "@/content/profile"
@@ -54,7 +54,7 @@ export default function HomePage() {
             </div>
           </div>
 
-          <Portrait size={260} className="lg:hidden mt-12" showScale={false} />
+          <HeroPortraitMobile />
 
         {/* Quiet proof strip. Every number is computed from the project
             list, so it cannot disagree with the page it links to. */}

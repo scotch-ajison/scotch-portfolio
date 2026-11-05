@@ -26,7 +26,7 @@ import opsReporting from "@/assets/images/ops-reporting.webp"
 export const projects: Project[] = [
   {
     slug: "zimbabwe-ecadastre",
-    order: 2,
+    order: 1,
     title: "Zimbabwe National eCadastre",
     role: "GIS systems architect and integrations lead, on the delivering team",
     period: "2022 — present",
@@ -68,7 +68,7 @@ export const projects: Project[] = [
 
   {
     slug: "cbz-gis-mortgage",
-    order: 3,
+    order: 2,
     title: "CBZ GIS Mortgage Platform",
     role: "GIS systems architect, on the delivering team",
     period: "2022 — 2023",
@@ -110,7 +110,7 @@ export const projects: Project[] = [
 
   {
     slug: "drone-outreach-agent",
-    order: 4,
+    order: 3,
     title: "Autonomous lead and outreach agent",
     role: "Author",
     period: "2026",
@@ -149,7 +149,7 @@ export const projects: Project[] = [
 
   {
     slug: "field-pack",
-    order: 5,
+    order: 7,
     title: "Field Pack — orthomosaics without GIS",
     role: "Author. Open source, MIT",
     period: "2026",
@@ -198,7 +198,7 @@ export const projects: Project[] = [
 
   {
     slug: "crop-disease-diagnosis",
-    order: 6,
+    order: 8,
     title: "Crop-disease diagnosis from a photograph",
     role: "Author. Open source",
     period: "2026",
@@ -232,7 +232,7 @@ export const projects: Project[] = [
 
   {
     slug: "building-change-observatory",
-    order: 8,
+    order: 9,
     title: "Building Change Observatory",
     role: "Author. Open data, CC BY 4.0",
     period: "2026",
@@ -269,7 +269,7 @@ export const projects: Project[] = [
 
   {
     slug: "operational-policing-platform",
-    order: 7,
+    order: 5,
     title: "Operational policing platform",
     role: "Developer",
     period: "2026",
@@ -401,7 +401,7 @@ export const projects: Project[] = [
 
   {
     slug: "potraz-monitoring",
-    order: 1,
+    order: 6,
     title: "Results-based monitoring systems",
     role: "Sole developer, architecture to deployment",
     period: "2023 — 2025",
@@ -565,7 +565,7 @@ export const projects: Project[] = [
 
   {
     slug: "investor-hosting",
-    order: 9,
+    order: 4,
     title: "Investor Hosting Centre",
     role: "Developer",
     period: "2026",
