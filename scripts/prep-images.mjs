@@ -71,6 +71,25 @@ const MANIFEST = [
     lift: true,
   },
 
+  // ── Investor Hosting Centre (public portal) ──────────────
+  {
+    slug: "ihc-portal",
+    source: `${REPO_PHOTOS}/ihc-portal.webp`,
+    maxWidth: 1600,
+    quality: 76,
+    crop: { left: 0, top: 0, width: 1897, height: 900 },
+  },
+
+  // ── POTRAZ Online Data Collection (public portal) ────────
+  // Cropped in from a very airy layout so the card is not mostly margin.
+  {
+    slug: "potraz-odc",
+    source: `${REPO_PHOTOS}/potraz-odc.png`,
+    maxWidth: 1400,
+    quality: 80,
+    crop: { left: 220, top: 120, width: 1450, height: 640 },
+  },
+
   // ── Field Pack — QGIS plugin (his own, MIT, public) ───────
   { slug: "field-pack-standalone", source: `${QGIS}/standalone.png`, maxWidth: 1600, quality: 72 },
   { slug: "field-pack-panel", source: `${QGIS}/fieldpack.png`, maxWidth: 1600, quality: 72 },

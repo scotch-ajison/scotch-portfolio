@@ -1,6 +1,8 @@
 import type { Project } from "./types"
 
 import ecadastrePortal from "@/assets/images/ecadastre-portal.webp"
+import ihcPortal from "@/assets/images/ihc-portal.webp"
+import potrazOdc from "@/assets/images/potraz-odc.webp"
 import fieldPackStandalone from "@/assets/images/field-pack-standalone.webp"
 import fieldPackPanel from "@/assets/images/field-pack-panel.webp"
 import fieldPackBasemap from "@/assets/images/field-pack-basemap.webp"
@@ -420,12 +422,14 @@ export const projects: Project[] = [
     plate: { mark: "PTZ", caption: "POTRAZ — telecoms regulator" },
     links: {},
     problem:
-      "Department heads across the regulator had no shared way to track KPIs or monitor team performance, so evaluation was manual and retrospective.",
+      "Two problems, one authority. Department heads had no shared way to track KPIs, so performance evaluation was manual and retrospective. Separately, every licensed telecoms operator filed its statutory returns by hand, which made the regulator's own reporting only as timely as its slowest submission.",
     approach:
-      "A centralised KPI and performance monitoring platform, built and deployed solo, alongside two further systems for the same authority.",
-    outcome: "Three interconnected systems in active production at the authority.",
+      "Three interconnected systems, built and deployed solo. A centralised KPI and performance monitoring platform for the authority's own departments, and the Online Data Collection system — the portal where every operator logs in and submits its monthly, quarterly, bi-annual and annual returns directly.",
+    outcome:
+      "Three systems in active production at the regulator. Operator returns now arrive through one portal on a known schedule, rather than as attachments chased by email.",
     metrics: [
       { label: "Systems", value: "3 live", note: "At one regulator" },
+      { label: "Returns", value: "4 cycles", note: "Monthly to annual, every operator" },
       { label: "Role", value: "Sole developer", note: "Architecture to deployment" },
     ],
     stack: [
@@ -433,7 +437,13 @@ export const projects: Project[] = [
       { label: "PostgreSQL", variant: "electric" },
       { label: "Python", variant: "electric" },
     ],
-    images: [],
+    images: [
+      {
+        src: potrazOdc,
+        alt: "The POTRAZ Online Data Collection System landing page, carrying the Postal and Telecommunications Regulatory Authority of Zimbabwe crest and a prompt for operators to log in and submit their monthly, quarterly, bi-annual and annual updates.",
+        caption: "The operator portal — statutory returns, submitted directly.",
+      },
+    ],
     location: { lat: -17.8099, lng: 31.0533, label: "Harare" },
     visibility: { listed: true, featured: true },
     updatedAt: "2026-08-21",
@@ -564,7 +574,7 @@ export const projects: Project[] = [
   {
     slug: "investor-hosting",
     order: 15,
-    title: "Investor intelligence platform",
+    title: "Investor Hosting Centre",
     role: "Developer",
     period: "2026",
     scale: "Multi-sector investment",
@@ -572,18 +582,28 @@ export const projects: Project[] = [
     disclosure: { kind: "named", client: "Radar Holdings" },
     links: { live: "https://investorhosting.com" },
     problem:
-      "Investors evaluating Zimbabwean real estate, mining and agricultural opportunities had no spatial way to discover or compare them.",
+      "An investor looking at African opportunities had nowhere to compare them. Prospects sat in brochures and inboxes, with no way to filter by industry, sector, commodity or country, and no way to see where any of it actually was.",
     approach:
-      "A spatially enabled investment platform with GIS dashboards and a React front end, surfacing assets across sectors on one map.",
-    outcome: "Investor onboarding and asset discovery, both spatial, both live.",
-    metrics: [{ label: "Status", value: "Live", note: "Publicly reachable" }],
+      "A public gateway where an opportunity is a structured, searchable record rather than a document. Filtering across industry, sector, commodity and country, GIS dashboards over the assets, and investor onboarding behind it.",
+    outcome:
+      "Live and publicly reachable, presenting bankable opportunities across the continent in one place — with the geography attached rather than described.",
+    metrics: [
+      { label: "Status", value: "Live", note: "Publicly reachable" },
+      { label: "Search", value: "4 dimensions", note: "Industry, sector, commodity, country" },
+    ],
     stack: [
       { label: "React", variant: "amber" },
       { label: "GIS dashboards", variant: "violet" },
       { label: "PostGIS", variant: "electric" },
     ],
-    images: [],
-    visibility: { listed: true, featured: false },
+    images: [
+      {
+        src: ihcPortal,
+        alt: "The Investor Hosting Centre home page, headlined 'Invest with Confidence, Achieve More', with a search panel filtering investment opportunities by industry, sector, commodity and country.",
+        caption: "Opportunities filtered by industry, sector, commodity and country.",
+      },
+    ],
+    visibility: { listed: true, featured: true },
     updatedAt: "2026-05-26",
   },
 
