@@ -24,7 +24,7 @@ const RECIPIENT = process.env.ENQUIRY_RECIPIENT ?? profile.email
  * and set these, per the DNS steps in the README.
  */
 const FROM_NOTIFICATIONS =
-  process.env.RESEND_FROM_NOTIFICATIONS ?? "Portfolio <onboarding@resend.dev>"
+  process.env.RESEND_FROM_NOTIFICATIONS ?? "Scotch Ajison Portfolio <onboarding@resend.dev>"
 const FROM_REPLIES = process.env.RESEND_FROM_REPLIES ?? FROM_NOTIFICATIONS
 
 /**
@@ -104,7 +104,7 @@ function notificationEmail(d: Enquiry) {
     </div>
   </div>`
 
-  return { text, html, subject: `New enquiry: ${label} — ${d.name}` }
+  return { text, html, subject: `[Portfolio] New enquiry: ${label} — ${d.name}` }
 }
 
 function autoReplyEmail(d: Enquiry) {
