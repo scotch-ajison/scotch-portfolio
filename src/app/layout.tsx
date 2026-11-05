@@ -1,5 +1,5 @@
 import type { Metadata } from "next"
-import { Inter, Inter_Tight, JetBrains_Mono, Instrument_Serif } from "next/font/google"
+import localFont from "next/font/local"
 import { Analytics } from "@vercel/analytics/next"
 import { SpeedInsights } from "@vercel/speed-insights/next"
 import "./globals.css"
@@ -9,31 +9,45 @@ import MotionProvider from "@/components/MotionProvider"
 import { siteUrl, siteName } from "@/lib/site"
 import { profile } from "@/content/profile"
 
-const inter = Inter({
-  subsets: ["latin"],
+/**
+ * Fonts are self-hosted, not fetched from Google at build time.
+ *
+ * `next/font/google` + Turbopack fails this build with "next/font/google
+ * queries have exactly one entry" — the generated CSS carries several
+ * src entries per face and Turbopack's font import map cannot resolve
+ * them. It broke a Vercel deploy and reproduced locally.
+ *
+ * Self-hosting removes the failure mode entirely, drops a third-party
+ * connection from the critical path, and keeps the build hermetic. These
+ * are the latin-subset variable files, so one file covers every weight.
+ */
+const inter = localFont({
+  src: "../fonts/inter.woff2",
   variable: "--font-inter",
+  weight: "100 900",
   display: "swap",
 })
 
-const interTight = Inter_Tight({
-  subsets: ["latin"],
+const interTight = localFont({
+  src: "../fonts/inter-tight.woff2",
   variable: "--font-inter-tight",
-  weight: ["400", "500", "600", "700"],
+  weight: "100 900",
   display: "swap",
 })
 
-const jetbrainsMono = JetBrains_Mono({
-  subsets: ["latin"],
+const jetbrainsMono = localFont({
+  src: "../fonts/jetbrains-mono.woff2",
   variable: "--font-jetbrains",
-  weight: ["400", "500"],
+  weight: "100 800",
   display: "swap",
 })
 
-const instrumentSerif = Instrument_Serif({
-  subsets: ["latin"],
+const instrumentSerif = localFont({
+  src: [
+    { path: "../fonts/instrument-serif.woff2", weight: "400", style: "normal" },
+    { path: "../fonts/instrument-serif-italic.woff2", weight: "400", style: "italic" },
+  ],
   variable: "--font-instrument",
-  weight: ["400"],
-  style: ["normal", "italic"],
   display: "swap",
 })
 
