@@ -179,7 +179,7 @@ export async function POST(request: Request) {
     const d = result.data
     const notification = notificationEmail(d)
 
-    const { error } = await resend.emails.send({
+    const { data, error } = await resend.emails.send({
       from: FROM_NOTIFICATIONS,
       to: [RECIPIENT],
       replyTo: headerSafe(d.email),
@@ -189,12 +189,21 @@ export async function POST(request: Request) {
     })
 
     if (error) {
-      console.error("[contact] notification failed:", error)
+      console.error("[contact] notification rejected by Resend:", error)
       return NextResponse.json(
         { error: `Message could not be sent. Please email ${RECIPIENT} directly.` },
         { status: 502 }
       )
     }
+
+    // Resend accepting a send is not the same as it being delivered: with
+    // the shared sandbox sender it will accept the call and then drop the
+    // message unless the recipient is the Resend account owner. Keep the
+    // id so a send can actually be traced in the Resend dashboard instead
+    // of guessed at.
+    console.log(
+      `[contact] queued id=${data?.id ?? "none"} from=${FROM_NOTIFICATIONS} to=${RECIPIENT}`
+    )
 
     // Auto-reply is best effort — the enquiry is already delivered, so a
     // failure here must not report failure to the sender. Skipped when
@@ -217,7 +226,7 @@ export async function POST(request: Request) {
       }
     }
 
-    return NextResponse.json({ success: true })
+    return NextResponse.json({ success: true, id: data?.id ?? null })
   } catch (err) {
     console.error("[contact] route error:", err)
     return NextResponse.json(
