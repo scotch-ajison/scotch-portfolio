@@ -55,6 +55,16 @@ if (imageCount !== alts.length) {
   fail(`${imageCount} images but ${alts.length} alt strings — every image needs one`)
 }
 
+// ── copy rules: no dashes as punctuation, no technology chips ──
+// Em and en dashes read as machine-written copy, and the stack each client
+// project ran on is not something the site discloses.
+for (const d of grabAll(projectsSrc, /"([^"\n]*[—–][^"\n]*)"/g)) {
+  fail(`em or en dash in project copy: "${d.slice(0, 70)}"`)
+}
+if (/^\s{4}stack:/m.test(projectsSrc)) {
+  fail("a project has a `stack` field; technologies are not shown per project")
+}
+
 // ── links: public hosts only ─────────────────────────────────
 const repos = grabAll(projectsSrc, /\brepo:\s*"([^"]+)"/g)
 for (const r of repos) {

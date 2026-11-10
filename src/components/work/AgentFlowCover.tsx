@@ -10,7 +10,7 @@ export default function AgentFlowCover({ tall }: { tall: boolean }) {
   const nodes = [
     { x: 24, label: "INBOX", sub: "+ web form" },
     { x: 148, label: "ENRICH", sub: "identify" },
-    { x: 272, label: "DRAFT", sub: "RAG · tone" },
+    { x: 272, label: "DRAFT", sub: "past emails" },
     { x: 396, label: "APPROVE", sub: "a person", gate: true },
     { x: 520, label: "SEND", sub: "outbound" },
     { x: 644, label: "RECORD", sub: "logged" },
@@ -31,7 +31,7 @@ export default function AgentFlowCover({ tall }: { tall: boolean }) {
         viewBox={`0 0 ${W} ${H}`}
         className="absolute inset-0 w-full h-full"
         role="img"
-        aria-label="Pipeline diagram: inbox and web form, enrich, draft using retrieval over past threads, a human approval gate, send, and record. The record feeds back into the retrieval corpus so the tone keeps learning."
+        aria-label="Pipeline diagram: inbox and web form, enrich, draft in the tone of the company's past emails, a human approval gate, send, and record. Each record feeds back into the drafts so the tone keeps improving."
       >
         {/* graticule */}
         {[0, 1, 2, 3, 4, 5, 6, 7].map((i) => (

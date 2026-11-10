@@ -9,7 +9,7 @@ import { profile } from "@/content/profile"
 export const metadata: Metadata = {
   title: "Work",
   description:
-    "National-scale GIS systems, open-source tooling and applied spatial AI — what the problem was, what was built, and what it actually produced.",
+    "National systems for government, police, banks and regulators, plus open source tools and research. Each case study covers the problem, the approach and the result.",
 }
 
 export default function WorkPage() {
@@ -30,10 +30,10 @@ export default function WorkPage() {
         </h1>
 
         <p className="text-fg-muted text-[17px] leading-[1.7] mt-8 max-w-[62ch]">
-          Production platforms that government agencies, banks and regulators use
-          daily, alongside the open-source tools and research I build on my own
-          time. Where there is a public repository or a live URL, it is linked.
-          Where there is not, it says why.
+          Production platforms used every day by government agencies, the
+          police, banks and regulators, alongside the open source tools and
+          research I build in my own time. Live sites and public repositories
+          are linked, and internal systems are marked as such.
         </p>
 
         <dl className="grid grid-cols-2 md:grid-cols-4 gap-px mt-14 border border-border rounded-md overflow-hidden bg-border">
@@ -60,14 +60,14 @@ export default function WorkPage() {
 
       <section className="max-w-[1240px] mx-auto px-6 pb-14">
         <ScrollReveal>
-          <p className="section-mark mb-8">§ 01 — Where the work is</p>
+          <p className="section-mark mb-8">§ 01 · Where the work is</p>
           <ProjectMap />
         </ScrollReveal>
       </section>
 
       <section className="max-w-[1240px] mx-auto px-6 pb-8">
         <ScrollReveal>
-          <p className="section-mark mb-8">§ 02 — Case studies</p>
+          <p className="section-mark mb-8">§ 02 · Case studies</p>
         </ScrollReveal>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
           {listed.map((p, i) => (
@@ -87,7 +87,7 @@ export default function WorkPage() {
           <div className="border border-border rounded-md p-10 md:p-14 bg-ink-raised flex flex-col md:flex-row md:items-center justify-between gap-8">
             <div className="max-w-[52ch]">
               <h2 className="font-display font-semibold text-2xl md:text-[32px] text-fg tracking-[-0.025em] leading-[1.1]">
-                Some of this is under NDA. Most of it I can talk through.
+                Some of this work is under NDA, and I can talk through most of it.
               </h2>
               <p className="text-fg-muted text-[15px] leading-[1.7] mt-4">
                 {profile.availability}

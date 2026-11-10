@@ -1,6 +1,7 @@
 import type { Project } from "./types"
 
 import cbzMortgages from "@/assets/images/cbz-mortgages.webp"
+import ecadastreMap from "@/assets/images/ecadastre-map.webp"
 import ecadastrePortal from "@/assets/images/ecadastre-portal.webp"
 import ihcPortal from "@/assets/images/ihc-portal.webp"
 import potrazOdc from "@/assets/images/potraz-odc.webp"
@@ -16,12 +17,14 @@ import opsReporting from "@/assets/images/ops-reporting.webp"
 
 /**
  * Every project on the site. Counts, the sitemap and the project map all
- * derive from this array — there is no second list anywhere.
+ * derive from this array, and there is no second list anywhere.
  *
  * Rules this file holds itself to:
  *  · `role` says what he actually did. Never "I built" for team work.
  *  · `links.live` is only ever a URL that was checked and answered 200.
  *  · A claim a reader can check is either evidenced or absent.
+ *  · No technology names in any project field, and no em or en dashes in
+ *    the copy. `check:content` fails the build on a dash or a `stack` field.
  */
 export const projects: Project[] = [
   {
@@ -29,71 +32,64 @@ export const projects: Project[] = [
     order: 1,
     title: "Zimbabwe National eCadastre",
     role: "GIS systems architect and integrations lead, on the delivering team",
-    period: "2022 — present",
+    period: "2022 to present",
     scale: "National land register",
     status: "live",
     disclosure: { kind: "named", client: "Department of the Surveyor General" },
     plate: { mark: "SG", caption: "Department of the Surveyor General" },
     links: { live: "http://zimcadastre.co.zw" },
     problem:
-      "Zimbabwe's cadastral record was paper-based and fragmented. A surveyor lodging a diagram, an examiner checking it and a citizen searching a title were all working from different copies of the truth, and none of them could query it spatially. Worse, the registers that had to agree with each other — deeds, mining, the investment one-stop shop — had no way to talk at all.",
+      "Zimbabwe's cadastral record was on paper and spread across offices. A surveyor lodging a diagram, an examiner checking it and a citizen searching for a title each worked from a different copy, and none of them could search it by location. The registers that needed to agree with it, including the Deeds Registry, the Mining Cadastre and the investment One Stop Shop, had no way of exchanging data.",
     approach:
-      "A national digital cadastre: PostGIS geodatabases designed end to end, the statutory lodgement-to-examination workflow modelled in GeoDjango, geodesy control layers, and authoritative parcel layers published as OGC services through GeoServer and consumed in OpenLayers. Bulk ingest of legacy records with geometric and topological validation, so examiners work from exceptions rather than reading every submission. I designed and built every API, and the integrations that put the eCadastre in conversation with the Deeds system, the One Stop Shop and the Mining Cadastre.",
+      "We built a national digital cadastre. I designed the spatial database end to end, modelled the statutory workflow from lodgement to examination, and set up the geodetic control layers and the authoritative parcel map services the portal reads from. Legacy records were loaded in bulk and checked for geometric and topological errors, so examiners now review the exceptions instead of every submission. I designed and built every API, including the integrations that connect the eCadastre to the Deeds Registry, the One Stop Shop and the Mining Cadastre.",
     outcome:
-      "Live in production and in daily use by surveyors, examiners and the public, serving property search, e-maps, cadastral and geodetic services. I owned the spatial architecture — schema, validation rules and service layer — and the integration layer across four national registers, as part of a team of five-plus developers.",
+      "Live in production and used every day by surveyors, examiners and the public for property search, online maps, cadastral services and geodetic services. I owned the spatial architecture, covering the schema, the validation rules and the service layer, along with the integration layer across four national registers, working in a team of more than five developers.",
     metrics: [
       { label: "Status", value: "Live", note: "In daily production use" },
       { label: "Integrations", value: "4 registers", note: "Deeds, One Stop Shop, Mining Cadastre" },
-      { label: "APIs", value: "Designed & built", note: "The whole integration layer" },
-    ],
-    stack: [
-      { label: "GeoDjango", variant: "violet" },
-      { label: "PostGIS", variant: "violet" },
-      { label: "GeoServer", variant: "violet" },
-      { label: "REST APIs", variant: "electric" },
-      { label: "System integration", variant: "violet" },
-      { label: "OpenLayers", variant: "electric" },
+      { label: "APIs", value: "Designed and built", note: "The whole integration layer" },
     ],
     images: [
       {
+        src: ecadastreMap,
+        alt: "The Zimbabwe eCadastre web map with cadastral parcels outlined in red across northern and central Zimbabwe, densest around Harare, Chitungwiza, Chinhoyi, Bindura and Kadoma, with property search and map tools along the edges.",
+        caption: "The live national map, with cadastral parcels drawn in red.",
+        crisp: true,
+      },
+      {
         src: ecadastrePortal,
         alt: "The Zimbabwe eCadastre portal home page, showing the Government of Zimbabwe and Department of the Surveyor General branding and links to property search, e-maps, cadastral services and geodetic services.",
-        caption: "The live portal — property search, e-maps, cadastral and geodetic services.",
+        caption: "The public portal, with property search, online maps, cadastral and geodetic services.",
       },
     ],
     location: { lat: -17.8252, lng: 31.0335, label: "Harare" },
     visibility: { listed: true, featured: true },
-    updatedAt: "2026-10-02",
+    updatedAt: "2026-11-10",
   },
 
   {
     slug: "cbz-gis-mortgage",
     order: 2,
     title: "CBZ GIS Mortgage Platform",
-    role: "GIS systems architect, on the delivering team",
-    period: "2022 — 2023",
+    role: "GIS systems architect and integrations, on the delivering team",
+    period: "2022 to 2023",
     scale: "National banking",
     status: "live",
     disclosure: { kind: "named", client: "Commercial Bank of Zimbabwe (CBZ)" },
     plate: { mark: "CBZ", caption: "Commercial Bank of Zimbabwe" },
     links: {},
-    accessNote:
-      "An internal banking platform — there is no public URL to link, and there should not be one.",
+    accessNote: "An internal banking platform, so there is no public URL to link.",
     problem:
-      "Mortgage applications were paper-driven. A loan officer assessing a property had no way to see it spatially, and no path between a valuation and the bank's core systems that did not involve re-keying.",
+      "Mortgage applications at CBZ ran on paper. A loan officer assessing a property could not see it on a map, and moving an application from valuation into the bank's core systems meant keying the same details in again.",
     approach:
-      "A GeoDjango and OpenLayers platform where a customer browses and evaluates properties on a map and applies against them directly, integrated with the bank's core banking, payment and SMS gateways over REST and SOAP.",
+      "A platform where customers find properties on a map, assess them and apply directly. We connected it to the bank's core banking system and SMS gateway, and integrated live payments through CBZ in both ZWG and USD. Local cards are processed through ZimSwitch, and international cards, including Visa and Mastercard, are accepted.",
     outcome:
-      "The first GIS-driven mortgage platform in Zimbabwean banking, live in production. End-to-end digital application, with spatial evaluation in the officer's workflow rather than beside it.",
+      "The first GIS-driven mortgage platform in Zimbabwean banking, live in production. Customers apply and pay online in ZWG or USD, and loan officers assess each property with its location in front of them.",
     metrics: [
       { label: "Status", value: "Live", note: "In production" },
+      { label: "Currencies", value: "ZWG and USD", note: "Live payments through CBZ" },
+      { label: "Cards", value: "Local and international", note: "ZimSwitch, Visa, Mastercard" },
       { label: "First", value: "In ZW banking", note: "GIS-driven mortgage platform" },
-    ],
-    stack: [
-      { label: "GeoDjango", variant: "violet" },
-      { label: "PostGIS", variant: "violet" },
-      { label: "OpenLayers", variant: "electric" },
-      { label: "REST + SOAP", variant: "electric" },
     ],
     images: [
       {
@@ -105,81 +101,157 @@ export const projects: Project[] = [
     ],
     location: { lat: -17.8292, lng: 31.0522, label: "Harare" },
     visibility: { listed: true, featured: true },
-    updatedAt: "2026-08-19",
+    updatedAt: "2026-11-10",
   },
 
   {
-    slug: "drone-outreach-agent",
-    order: 3,
-    title: "Autonomous lead and outreach agent",
-    role: "Author",
+    slug: "investor-hosting",
+    order: 4,
+    title: "Investor Hosting Centre",
+    role: "Developer",
     period: "2026",
-    scale: "Commercial drone operator",
+    scale: "Multi-sector investment",
+    status: "live",
+    disclosure: { kind: "named", client: "Radar Holdings" },
+    links: { live: "https://investorhosting.com" },
+    problem:
+      "Investors looking at African opportunities had nowhere to compare them. Prospects sat in brochures and inboxes, with no way to filter by industry, sector, commodity or country and no way to see where an asset actually was.",
+    approach:
+      "A public gateway where each opportunity is a structured, searchable record. Investors filter by industry, sector, commodity and country, view the assets on GIS dashboards, and register through an onboarding flow.",
+    outcome:
+      "Live and publicly reachable, with investment opportunities from across the continent in one place and each one shown on the map.",
+    metrics: [
+      { label: "Status", value: "Live", note: "Publicly reachable" },
+      { label: "Search", value: "4 dimensions", note: "Industry, sector, commodity, country" },
+    ],
+    images: [
+      {
+        src: ihcPortal,
+        alt: "The Investor Hosting Centre home page, headlined 'Invest with Confidence, Achieve More', with a search panel filtering investment opportunities by industry, sector, commodity and country.",
+        caption: "Opportunities filtered by industry, sector, commodity and country.",
+      },
+    ],
+    visibility: { listed: true, featured: true },
+    updatedAt: "2026-11-10",
+  },
+
+  {
+    slug: "operational-policing-platform",
+    order: 5,
+    title: "ZRP Operational Policing Platform",
+    role: "Developer",
+    period: "2026",
+    scale: "National law enforcement",
+    status: "delivered",
+    disclosure: { kind: "named", client: "Zimbabwe Republic Police (ZRP)" },
+    links: {},
+    accessNote:
+      "An internal ZRP system. Every screenshot here is from the demo environment, filled with synthetic records.",
+    problem:
+      "The Zimbabwe Republic Police kept case records, station deployment and incident reports in separate systems with no map view, so nobody at ZRP could see where incidents were concentrating until after the fact.",
+    approach:
+      "The platform gives ZRP one operational picture. A layered map with incident heat mapping over police stations, settlements, rivers and roads sits alongside records search, deployment planning and structured incident reporting.",
+    outcome:
+      "Delivered to ZRP and in use. The screenshots come from the demo environment, so every identifier reads DEMO-NID-001 and every record is synthetic test data.",
+    metrics: [
+      { label: "Client", value: "ZRP", note: "Zimbabwe Republic Police" },
+      { label: "Layers", value: "5 operational", note: "Heat, stations, settlement, hydrology, transport" },
+      { label: "Data shown", value: "Synthetic", note: "Demo environment only" },
+    ],
+    images: [
+      {
+        src: opsHeatmap,
+        alt: "The ZRP operational policing platform map of Harare and surrounds with a density heat map overlaid, and a layer panel listing heat, police station, settlement, hydrology and transport layers.",
+        caption: "The operational map over Harare, with every layer switched from one panel.",
+        credit: "Basemap © OpenStreetMap contributors",
+      },
+      {
+        src: opsRecords,
+        alt: "Records search in the ZRP operational policing platform, listing demo entries where every identifier starts DEMO-NID and every sentence field reads 'synthetic sentence for testing only'.",
+        caption: "Records search in the demo environment, with synthetic data throughout.",
+      },
+      {
+        src: opsLanding,
+        alt: "The landing screen of the ZRP operational policing platform, showing its main navigation.",
+      },
+      {
+        src: opsDeployment,
+        alt: "The deployment planning screen of the ZRP operational policing platform.",
+        caption: "Deployment planning.",
+      },
+      {
+        src: opsReporting,
+        alt: "The structured incident reporting form of the ZRP operational policing platform.",
+        caption: "Structured incident reporting.",
+      },
+    ],
+    visibility: { listed: true, featured: true },
+    updatedAt: "2026-11-10",
+  },
+
+  {
+    slug: "potraz-monitoring",
+    order: 6,
+    title: "Results-based monitoring systems",
+    role: "Sole developer, architecture to deployment",
+    period: "2023 to 2025",
+    scale: "3 systems in production",
     status: "live",
     disclosure: {
-      kind: "anonymised",
-      clientDescriptor: "A commercial drone-services company",
+      kind: "named",
+      client: "Postal and Telecommunications Regulatory Authority of Zimbabwe",
     },
-    cover: "agent-flow",
+    plate: { mark: "PTZ", caption: "POTRAZ, telecoms regulator" },
     links: {},
-    accessNote: "An internal system for a client — no public URL.",
     problem:
-      "Leads arrived from a website form and a shared inbox, and were worked by hand. Follow-up depended on who happened to read the message, nobody could say who had been contacted or what had been promised, and a lead that went cold left no trace of why.",
+      "The regulator had two problems. Department heads had no shared way to track KPIs, so performance reviews were manual and backward-looking. Separately, every licensed telecoms operator filed its statutory returns by hand, which made the regulator's own reporting only as timely as its slowest submission.",
     approach:
-      "An agent that watches the inbox and the website's lead forms, identifies and enriches the prospect, drafts outreach, and writes every contact back to a record. The draft is built from retrieval over the company's own past email threads, so the tone is learned from what they actually send rather than described in a prompt — and it keeps improving as more correspondence lands. A separate prospecting pass goes looking for candidate clients the inbox never produced.",
+      "I built and deployed three connected systems on my own. They include a central KPI and performance monitoring platform for the authority's departments, and the Online Data Collection system, where every operator logs in and submits its monthly, quarterly, bi-annual and annual returns.",
     outcome:
-      "Nothing leaves the building without a human approving it. The approval gate is the architecture, not a setting: the agent researches, drafts and queues, and a person decides. That is what makes it safe to point at real customers.",
+      "All three systems are in active production at POTRAZ. Operator returns now arrive through one portal on a known schedule instead of as email attachments that staff had to chase.",
     metrics: [
-      { label: "Outbound", value: "Human-approved", note: "No message sends itself" },
-      { label: "Tone", value: "Learned", note: "RAG over the company's own threads" },
-      { label: "Record", value: "Every contact", note: "Logged against the customer" },
+      { label: "Systems", value: "3 live", note: "At one regulator" },
+      { label: "Returns", value: "4 cycles", note: "Monthly to annual, every operator" },
+      { label: "Role", value: "Sole developer", note: "Architecture to deployment" },
     ],
-    stack: [
-      { label: "Python", variant: "electric" },
-      { label: "LLM agents", variant: "violet" },
-      { label: "RAG", variant: "violet" },
-      { label: "Email integration", variant: "electric" },
-      { label: "Web scraping", variant: "amber" },
-      { label: "Approval workflow", variant: "violet" },
+    images: [
+      {
+        src: potrazOdc,
+        alt: "The POTRAZ Online Data Collection System landing page, carrying the Postal and Telecommunications Regulatory Authority of Zimbabwe crest and a prompt for operators to log in and submit their monthly, quarterly, bi-annual and annual updates.",
+        caption: "The operator portal, where statutory returns are submitted directly.",
+      },
     ],
-    images: [],
+    location: { lat: -17.8099, lng: 31.0533, label: "Harare" },
     visibility: { listed: true, featured: true },
-    updatedAt: "2026-11-05",
+    updatedAt: "2026-11-10",
   },
 
   {
     slug: "field-pack",
     order: 7,
-    title: "Field Pack — orthomosaics without GIS",
+    title: "Field Pack: orthomosaics without GIS software",
     role: "Author. Open source, MIT",
     period: "2026",
-    scale: "QGIS plugin + Python CLI",
+    scale: "QGIS plugin and command-line tool",
     status: "live",
     disclosure: { kind: "self", client: "Own project" },
     links: { repo: "https://github.com/scotch-ajison/qgis-fieldpack" },
     problem:
-      "Handing someone a 19 GB orthomosaic is not a file transfer problem, it is a software problem. The recipient needs QGIS, a server, or both — so in practice the survey never reaches the person who needed to look at it.",
+      "A 19 GB orthomosaic is hard to hand over because of the software it needs more than because of its size. The recipient needs GIS software, a server or both, so in practice the survey often never reaches the person who needed to see it.",
     approach:
-      "A headless Python library plus a thin QGIS dock that packs a project or an orthophoto — ECW and JP2 included — into one PMTiles archive with a MapLibre GL viewer that opens from the filesystem. GDAL is driven by subprocess rather than shipping a C++ tiler, and pmtiles is vendored into the plugin zip, so Windows installs cleanly.",
+      "Field Pack packs a project or an orthophoto, including the compressed formats drone survey firms deliver, into a single file with a built-in viewer that opens straight from the filesystem, with no server and no internet connection. It runs as a panel inside QGIS or from the command line, and installs cleanly on Windows from one zip.",
     outcome:
-      "v0.1 shipped with an installable zip. The style translator never imports PyQGIS, so it tests in about a tenth of a second — which is why the suite is worth running.",
+      "Version 0.1 shipped as an installable zip. The style translator does not need QGIS loaded to run, so its tests finish in about a tenth of a second.",
     metrics: [
       { label: "Tests", value: "200 pass", note: "14 skipped, 13 modules" },
       { label: "Licence", value: "MIT", note: "Public repository" },
-      { label: "Qt6", value: "Ready", note: "QGIS 3.28 — 4.99" },
-    ],
-    stack: [
-      { label: "PyQGIS", variant: "violet" },
-      { label: "GDAL", variant: "violet" },
-      { label: "PMTiles", variant: "electric" },
-      { label: "MapLibre GL", variant: "electric" },
-      { label: "pytest", variant: "amber" },
+      { label: "Release", value: "v0.1", note: "Installable plugin zip" },
     ],
     images: [
       {
         src: fieldPackPanel,
-        alt: "The Field Pack dock inside QGIS, showing the packing options for converting a project or orthophoto into a single PMTiles archive.",
-        caption: "The QGIS dock. The library underneath runs headless.",
+        alt: "The Field Pack panel inside QGIS, showing the options for packing a project or orthophoto into a single shareable file.",
+        caption: "The QGIS panel. The same packing also runs from the command line.",
       },
       {
         src: fieldPackBasemap,
@@ -193,13 +265,13 @@ export const projects: Project[] = [
       },
     ],
     visibility: { listed: true, featured: true },
-    updatedAt: "2026-09-29",
+    updatedAt: "2026-11-10",
   },
 
   {
     slug: "crop-disease-diagnosis",
     order: 8,
-    title: "Crop-disease diagnosis from a photograph",
+    title: "Crop disease diagnosis from a photograph",
     role: "Author. Open source",
     period: "2026",
     scale: "281-condition knowledge base",
@@ -208,26 +280,19 @@ export const projects: Project[] = [
     plate: { mark: "KB", caption: "281-condition knowledge base" },
     links: { repo: "https://github.com/scotch-ajison/zimkb" },
     problem:
-      "A model that names a disease from a photograph is easy to prototype and very hard to make safe. Look-alikes are everywhere, a third of what a farmer photographs is not a pathogen at all, and a model prescribing from general training data will happily recommend a pesticide that is banned in Zimbabwe.",
+      "A model that names a disease from a photograph is easy to prototype and hard to make safe. Look-alike conditions are common, about a third of what farmers photograph is not caused by a pathogen at all, and a model prescribing from general knowledge will recommend pesticides that are banned in Zimbabwe.",
     approach:
-      "The vision step is forbidden from naming a disease — it may only describe what it can see. Two-stage retrieval then pulls differential, management and safety evidence for every candidate and every confusable condition, and a second reasoning pass either commits or asks for a specific field test. A build-time validator fails the build if any output recommends a restricted active.",
+      "The image step is not allowed to name a disease. It can only describe what it sees. The pipeline then pulls differential, management and safety evidence for every candidate and for every condition it could be confused with, and a second reasoning step either commits to a diagnosis or asks for a specific field test. A check at build time fails the build if any output recommends a restricted active ingredient.",
     outcome:
-      "The validator caught eight chemical recommendations naming DR&SS-banned actives, inherited from foreign extension sources. Retrieval works on plain BM25 with no embeddings and no vector database — a query takes about two milliseconds.",
+      "The check caught eight chemical recommendations naming actives banned by DR&SS, carried over from foreign extension sources. A search across the whole knowledge base takes about two milliseconds.",
     metrics: [
-      { label: "Retrieval", value: "13/15 top-1", note: "15/15 top-3, BM25, no embeddings" },
-      { label: "Corpus", value: "281 records", note: "1,850 retrievable passages" },
-      { label: "Caught", value: "8 banned actives", note: "Build now fails on a match" },
-    ],
-    stack: [
-      { label: "Python", variant: "electric" },
-      { label: "Claude API", variant: "violet" },
-      { label: "RAG", variant: "violet" },
-      { label: "BM25", variant: "electric" },
-      { label: "Zero-dependency core", variant: "amber" },
+      { label: "Accuracy", value: "13/15 top-1", note: "15/15 in the top three" },
+      { label: "Corpus", value: "281 records", note: "1,850 searchable passages" },
+      { label: "Caught", value: "8 banned actives", note: "The build now fails on a match" },
     ],
     images: [],
     visibility: { listed: true, featured: true },
-    updatedAt: "2026-08-19",
+    updatedAt: "2026-11-10",
   },
 
   {
@@ -236,97 +301,28 @@ export const projects: Project[] = [
     title: "Building Change Observatory",
     role: "Author. Open data, CC BY 4.0",
     period: "2026",
-    scale: "8 km² of Harare, 2016 — present",
+    scale: "8 km² of Harare, 2016 to present",
     status: "research",
     disclosure: { kind: "self", client: "Own project" },
     plate: { mark: "BCO", caption: "Building Change Observatory" },
     links: {},
     accessNote:
-      "Not yet published — the repository is local while the validation sample is scored.",
+      "Not yet published. The repository stays local while the validation sample is scored.",
     problem:
-      "Banks, valuers and planners need dated, verifiable building change. The original brief — every constructed parcel in Zimbabwe, traced off a commercial basemap — fails on licence and on physics: the terms forbid derived datasets, and a basemap is one undated mosaic, so it cannot tell you when anything happened.",
+      "Banks, valuers and planners need dated, verifiable records of building change. The original brief was to trace every built-up parcel in Zimbabwe off a commercial basemap. The licence forbids derived datasets, and a basemap is a single undated mosaic that cannot show when anything changed, so that approach could not work.",
     approach:
-      "Scope cut knowingly to one suburb. Fixed building footprints act as immutable containers; annual presence and height rasters are harvested into them by zonal statistics, so every period is measured the same way as the last. Hysteresis and a two-period persistence rule stop threshold noise being reported as change. Remote rasters are read by HTTP range request — about 38 MB of traffic for a window of a 1 GB tile instead of downloading all of it.",
+      "I cut the scope to one suburb on purpose. Fixed building footprints act as unchanging containers, and yearly presence and height measurements are summarised into each one, so every period is measured the same way as the last. A two-period persistence rule keeps threshold noise from being reported as change. Remote imagery is read in small windows, which means about 38 MB of traffic for an area of a 1 GB tile instead of the whole file.",
     outcome:
-      "The most useful result is a negative one, and it is in the README rather than buried: vertical extension is not detectable at this resolution. Building-level height deltas have symmetric tails at every threshold, which is what noise looks like. Reporting it as a finding was the honest option.",
+      "The most useful result is a negative one, and the README states it up front. At this resolution, building-level height changes spread evenly in both directions at every threshold, which is how noise behaves, so vertical extensions cannot be detected. The study reports that as a finding.",
     metrics: [
       { label: "Buildings", value: "30,336", note: "Median footprint 47 m²" },
       { label: "Presence", value: "35.5% → 46.4%", note: "2016 → 2023" },
-      { label: "Unresolved", value: "49%", note: "Stated, not silently dropped" },
-    ],
-    stack: [
-      { label: "Python", variant: "electric" },
-      { label: "rasterio", variant: "violet" },
-      { label: "DuckDB", variant: "electric" },
-      { label: "GeoParquet", variant: "violet" },
-      { label: "Leaflet", variant: "amber" },
+      { label: "Unresolved", value: "49%", note: "Reported in the results" },
     ],
     images: [],
     location: { lat: -17.7836, lng: 31.0522, label: "Mount Pleasant, Harare" },
     visibility: { listed: true, featured: true },
-    updatedAt: "2026-08-17",
-  },
-
-  {
-    slug: "operational-policing-platform",
-    order: 5,
-    title: "Operational policing platform",
-    role: "Developer",
-    period: "2026",
-    scale: "National law enforcement",
-    status: "delivered",
-    disclosure: {
-      kind: "anonymised",
-      clientDescriptor: "A national law-enforcement agency",
-    },
-    links: {},
-    accessNote:
-      "An internal operational system. Every screenshot below is of the demo environment, populated with synthetic records.",
-    problem:
-      "Case records, station deployment and incident reporting lived in separate systems with no spatial view, so nobody could see where anything was happening until after it had.",
-    approach:
-      "One operational picture: a layer-managed map with heat mapping over station, settlement, hydrology and transport layers, alongside records search, deployment planning and structured incident reporting.",
-    outcome:
-      "Delivered and in use. The screenshots show the demo environment — identifiers read DEMO-NID-001 and sentences read 'synthetic value for testing only' because that is exactly what the demo data is.",
-    metrics: [
-      { label: "Layers", value: "5 operational", note: "Heat, stations, settlement, hydrology, transport" },
-      { label: "Data shown", value: "Synthetic", note: "Demo environment only" },
-    ],
-    stack: [
-      { label: "Django", variant: "electric" },
-      { label: "PostGIS", variant: "violet" },
-      { label: "Leaflet", variant: "amber" },
-      { label: "Heat mapping", variant: "violet" },
-    ],
-    images: [
-      {
-        src: opsHeatmap,
-        alt: "An operational map of Harare and surrounds with a density heat map overlaid, and a layer-management panel listing heat, police station, settlement, hydrology and transport layers.",
-        caption: "Layer-managed operational picture over Harare.",
-        credit: "Basemap © OpenStreetMap contributors",
-      },
-      {
-        src: opsRecords,
-        alt: "A records search table listing demo entries, every identifier prefixed DEMO-NID and every sentence field reading 'synthetic sentence for testing only'.",
-        caption: "Records search — the demo environment, synthetic data throughout.",
-      },
-      {
-        src: opsLanding,
-        alt: "The landing screen of the operational policing platform showing its main navigation.",
-      },
-      {
-        src: opsDeployment,
-        alt: "The deployment planning screen of the operational policing platform.",
-        caption: "Deployment planning.",
-      },
-      {
-        src: opsReporting,
-        alt: "The structured incident reporting form of the operational policing platform.",
-        caption: "Structured incident reporting.",
-      },
-    ],
-    visibility: { listed: true, featured: true },
-    updatedAt: "2026-09-07",
+    updatedAt: "2026-11-10",
   },
 
   {
@@ -340,31 +336,25 @@ export const projects: Project[] = [
     disclosure: { kind: "self", client: "Own project" },
     links: {},
     problem:
-      "An inherited ward layer carried population attributes that looked plausible and were entirely fabricated by a bad join — the value was a function of ward number alone.",
+      "An inherited ward layer carried population figures that looked plausible but had been produced by a bad join. Each value depended on the ward number alone.",
     approach:
-      "Treated the document's own subtotals as a test suite. Rebuilt the join on a geometry-derived crosswalk, recomputed area in an equal-area projection rather than in degrees, and reconciled every ward against the published census tables before projecting forward.",
+      "I used the document's own subtotals as a test suite. I rebuilt the join on a crosswalk derived from the geometry, recalculated area in an equal-area projection instead of in degrees, and reconciled every ward against the published census tables before projecting forward.",
     outcome:
-      "46 distinct population values had been broadcast across 1,981 rows. After the repair, 1,979 of 1,981 wards matched the census — including one ward filed under a province 150 km from where its geometry sits.",
+      "The layer had 46 distinct population values copied across 1,981 rows. After the repair, 1,979 of 1,981 wards matched the census, including one ward filed under a province 150 km from where its boundary actually sits.",
     metrics: [
       { label: "Fabricated", value: "46 values", note: "Spread across 1,981 rows" },
       { label: "Reconciled", value: "1,979 / 1,981", note: "Against the 2022 census" },
       { label: "Finding", value: "19.3% on 0.72%", note: "Of people, on that share of land" },
     ],
-    stack: [
-      { label: "PostGIS", variant: "violet" },
-      { label: "GeoPandas", variant: "electric" },
-      { label: "QGIS", variant: "amber" },
-      { label: "Cartography", variant: "violet" },
-    ],
     images: [
       {
         src: wardDensity,
         alt: "A choropleth map of Zimbabwe shaded by population density with urban insets and proportional symbol rings for population counts.",
-        caption: "Density shaded, counts symbolised — urban districts inset.",
+        caption: "Density shaded and counts shown as symbols, with urban districts inset.",
       },
     ],
     visibility: { listed: true, featured: false },
-    updatedAt: "2026-08-01",
+    updatedAt: "2026-11-10",
   },
 
   {
@@ -372,7 +362,7 @@ export const projects: Project[] = [
     order: 11,
     title: "Land Information System",
     role: "Lead developer",
-    period: "2022 — 2023",
+    period: "2022 to 2023",
     scale: "National government",
     status: "delivered",
     disclosure: {
@@ -381,64 +371,16 @@ export const projects: Project[] = [
     },
     links: {},
     problem:
-      "State land applications moved through manual, paper-heavy approval chains with no spatial verification at any step.",
+      "State land applications moved through manual, paper-heavy approval chains with no spatial check at any step.",
     approach:
-      "A GIS-based land allocation and registration system covering the full workflow — ministerial approval through to field-officer verification — with GIS field data collection and automated approval routing.",
+      "A GIS-based land allocation and registration system covering the whole workflow, from ministerial approval to field officer verification, with data collected on site and approvals routed automatically.",
     outcome:
-      "The paper chain was replaced end to end, and an allocation became something you could see on a map before approving it.",
+      "The paper chain was replaced end to end, and every allocation can now be seen on a map before it is approved.",
     metrics: [{ label: "Scope", value: "Full lifecycle", note: "Approval to field verification" }],
-    stack: [
-      { label: "GeoDjango", variant: "violet" },
-      { label: "PostGIS", variant: "violet" },
-      { label: "React", variant: "amber" },
-      { label: "OpenLayers", variant: "electric" },
-    ],
     images: [],
     location: { lat: -17.8216, lng: 31.0492, label: "Harare" },
     visibility: { listed: true, featured: false },
-    updatedAt: "2026-08-19",
-  },
-
-  {
-    slug: "potraz-monitoring",
-    order: 6,
-    title: "Results-based monitoring systems",
-    role: "Sole developer, architecture to deployment",
-    period: "2023 — 2025",
-    scale: "3 systems in production",
-    status: "live",
-    disclosure: {
-      kind: "named",
-      client: "Postal and Telecommunications Regulatory Authority of Zimbabwe",
-    },
-    plate: { mark: "PTZ", caption: "POTRAZ — telecoms regulator" },
-    links: {},
-    problem:
-      "Two problems, one authority. Department heads had no shared way to track KPIs, so performance evaluation was manual and retrospective. Separately, every licensed telecoms operator filed its statutory returns by hand, which made the regulator's own reporting only as timely as its slowest submission.",
-    approach:
-      "Three interconnected systems, built and deployed solo. A centralised KPI and performance monitoring platform for the authority's own departments, and the Online Data Collection system — the portal where every operator logs in and submits its monthly, quarterly, bi-annual and annual returns directly.",
-    outcome:
-      "Three systems in active production at the regulator. Operator returns now arrive through one portal on a known schedule, rather than as attachments chased by email.",
-    metrics: [
-      { label: "Systems", value: "3 live", note: "At one regulator" },
-      { label: "Returns", value: "4 cycles", note: "Monthly to annual, every operator" },
-      { label: "Role", value: "Sole developer", note: "Architecture to deployment" },
-    ],
-    stack: [
-      { label: "Django", variant: "electric" },
-      { label: "PostgreSQL", variant: "electric" },
-      { label: "Python", variant: "electric" },
-    ],
-    images: [
-      {
-        src: potrazOdc,
-        alt: "The POTRAZ Online Data Collection System landing page, carrying the Postal and Telecommunications Regulatory Authority of Zimbabwe crest and a prompt for operators to log in and submit their monthly, quarterly, bi-annual and annual updates.",
-        caption: "The operator portal — statutory returns, submitted directly.",
-      },
-    ],
-    location: { lat: -17.8099, lng: 31.0533, label: "Harare" },
-    visibility: { listed: true, featured: true },
-    updatedAt: "2026-08-21",
+    updatedAt: "2026-11-10",
   },
 
   {
@@ -455,50 +397,40 @@ export const projects: Project[] = [
     },
     links: {},
     problem:
-      "Artisanal and small-scale mining across the region was unmapped, which made any cross-border health or environmental assessment impossible to ground.",
+      "Artisanal and small-scale mining across the region had never been mapped consistently, so a cross-border health or environmental assessment had nothing solid to work from.",
     approach:
-      "Cross-border spatial data collection and harmonisation, reconciling inconsistent national datasets — different schemas, different vintages, different ideas of what counts as a site — into one analysable layer.",
+      "I collected and harmonised spatial data across borders, reconciling national datasets with different schemas, different dates and different definitions of what counts as a site into one layer that could be analysed.",
     outcome:
-      "A single cross-border layer the study could actually analyse, covering eight countries.",
+      "A single cross-border layer covering eight countries, ready for the study's analysis.",
     metrics: [{ label: "Countries", value: "8", note: "Harmonised into one layer" }],
-    stack: [
-      { label: "QGIS", variant: "amber" },
-      { label: "Data harmonisation", variant: "violet" },
-      { label: "Field data", variant: "electric" },
-    ],
     images: [],
     visibility: { listed: true, featured: false },
-    updatedAt: "2026-08-19",
+    updatedAt: "2026-11-10",
   },
 
   {
     slug: "zrbf-spatial-data-warehouses",
     order: 13,
     title: "Spatial data warehouses, ten district councils",
-    role: "GIS specialist & deployment",
-    period: "2020 — 2021",
+    role: "GIS specialist and deployment",
+    period: "2020 to 2021",
     scale: "10+ rural district councils",
     status: "delivered",
     disclosure: { kind: "named", client: "Zimbabwe Resilience Building Fund" },
     links: {},
     problem:
-      "Rural district councils held climate, agriculture, hydrology and infrastructure data in siloed formats, which blocked any coordinated drought or flood preparedness at district level.",
+      "Rural district councils held climate, agriculture, hydrology and infrastructure data in separate formats, which blocked coordinated drought and flood preparedness at district level.",
     approach:
-      "Centralised geospatial repositories on PostgreSQL/PostGIS with layers published through GeoServer, deployed across more than ten councils — then trained council staff to run them without outside support.",
+      "I deployed central spatial data repositories with published map layers across more than ten councils, then trained council staff to run them without outside support.",
     outcome:
-      "The training is the part that mattered. The councils still operate these without external support, which is the only definition of a successful deployment in that setting.",
+      "The councils still run these repositories without outside help, which was the point of the training.",
     metrics: [
       { label: "Councils", value: "10+", note: "Deployed and handed over" },
-      { label: "Handover", value: "Staff trained", note: "Operated without external support" },
-    ],
-    stack: [
-      { label: "PostGIS", variant: "violet" },
-      { label: "GeoServer", variant: "violet" },
-      { label: "WMS / WFS", variant: "electric" },
+      { label: "Handover", value: "Staff trained", note: "Running without outside support" },
     ],
     images: [],
     visibility: { listed: true, featured: false },
-    updatedAt: "2026-08-19",
+    updatedAt: "2026-11-10",
   },
 
   {
@@ -506,7 +438,7 @@ export const projects: Project[] = [
     order: 14,
     title: "COVID-19 spatial response dashboard",
     role: "Developer",
-    period: "2020 — 2021",
+    period: "2020 to 2021",
     scale: "National public health",
     status: "delivered",
     disclosure: {
@@ -515,21 +447,15 @@ export const projects: Project[] = [
     },
     links: {},
     problem:
-      "At peak response, national health teams needed one spatial view of cases, testing centres, isolation facilities and hospital capacity. It lived in disconnected spreadsheets.",
+      "At the peak of the response, national health teams needed one map of cases, testing centres, isolation facilities and hospital capacity. The data sat in disconnected spreadsheets.",
     approach:
-      "A spatially enabled dashboard over Django, GeoServer and OpenLayers, integrating epidemiological data with facility capacity and district-level case statistics.",
+      "A spatial dashboard that combined epidemiological data with facility capacity and district case statistics.",
     outcome:
-      "Case mapping, hotspot detection and facility capacity in one place, during the period when that was the input to deployment decisions.",
+      "Case mapping, hotspot detection and facility capacity in one place, at a time when that view informed deployment decisions.",
     metrics: [{ label: "Scope", value: "National", note: "Case, facility and capacity data" }],
-    stack: [
-      { label: "Django", variant: "electric" },
-      { label: "GeoServer", variant: "violet" },
-      { label: "OpenLayers", variant: "electric" },
-      { label: "PostGIS", variant: "violet" },
-    ],
     images: [],
     visibility: { listed: true, featured: false },
-    updatedAt: "2026-08-19",
+    updatedAt: "2026-11-10",
   },
 
   {
@@ -538,90 +464,74 @@ export const projects: Project[] = [
     title: "Vegetation index explorer",
     role: "Author",
     period: "2026",
-    scale: "Cloud-scale raster analysis",
+    scale: "Satellite index analysis",
     status: "research",
     disclosure: { kind: "self", client: "Own project" },
     links: {},
     problem:
-      "Getting NDVI, NDWI, EVI or SAVI for a specific area of interest meant stitching tiles, reprojecting and computing indices by hand — far too slow to be part of a decision.",
+      "Getting NDVI, NDWI, EVI or SAVI for a specific area meant stitching tiles, reprojecting and computing the indices by hand, which was too slow to inform a decision.",
     approach:
-      "Draw a polygon on a map, get the imagery back with the index computed and clipped to exactly that boundary. Processing runs on Google Earth Engine from Python, with five-year trend series and Open-Meteo rainfall and temperature alongside.",
+      "Draw a polygon on a map and get the imagery back with the index computed and clipped to that boundary. Processing runs in the cloud, with five-year trend series and rainfall and temperature data alongside.",
     outcome:
-      "The full path from satellite source to a web interface, in one piece, at any scale the AOI demands.",
+      "The full path from satellite imagery to a web interface, working at whatever scale the area of interest needs.",
     metrics: [
       { label: "Indices", value: "NDVI, EVI, SAVI", note: "Plus NDWI and soil moisture" },
       { label: "Trend", value: "5 years", note: "Per area of interest" },
     ],
-    stack: [
-      { label: "Google Earth Engine", variant: "violet" },
-      { label: "Python", variant: "electric" },
-      { label: "Leaflet", variant: "amber" },
-      { label: "Raster analysis", variant: "violet" },
-    ],
     images: [],
     visibility: { listed: true, featured: false },
-    updatedAt: "2026-04-15",
-  },
-
-  {
-    slug: "investor-hosting",
-    order: 4,
-    title: "Investor Hosting Centre",
-    role: "Developer",
-    period: "2026",
-    scale: "Multi-sector investment",
-    status: "live",
-    disclosure: { kind: "named", client: "Radar Holdings" },
-    links: { live: "https://investorhosting.com" },
-    problem:
-      "An investor looking at African opportunities had nowhere to compare them. Prospects sat in brochures and inboxes, with no way to filter by industry, sector, commodity or country, and no way to see where any of it actually was.",
-    approach:
-      "A public gateway where an opportunity is a structured, searchable record rather than a document. Filtering across industry, sector, commodity and country, GIS dashboards over the assets, and investor onboarding behind it.",
-    outcome:
-      "Live and publicly reachable, presenting bankable opportunities across the continent in one place — with the geography attached rather than described.",
-    metrics: [
-      { label: "Status", value: "Live", note: "Publicly reachable" },
-      { label: "Search", value: "4 dimensions", note: "Industry, sector, commodity, country" },
-    ],
-    stack: [
-      { label: "React", variant: "amber" },
-      { label: "GIS dashboards", variant: "violet" },
-      { label: "PostGIS", variant: "electric" },
-    ],
-    images: [
-      {
-        src: ihcPortal,
-        alt: "The Investor Hosting Centre home page, headlined 'Invest with Confidence, Achieve More', with a search panel filtering investment opportunities by industry, sector, commodity and country.",
-        caption: "Opportunities filtered by industry, sector, commodity and country.",
-      },
-    ],
-    visibility: { listed: true, featured: true },
-    updatedAt: "2026-05-26",
+    updatedAt: "2026-11-10",
   },
 
   {
     slug: "openstreetmap",
     order: 16,
     title: "OpenStreetMap contribution",
-    role: "Contributor — YouthMappers, University of Zimbabwe",
-    period: "2019 — present",
+    role: "Contributor with YouthMappers, University of Zimbabwe",
+    period: "2019 to present",
     scale: "Zimbabwe",
     status: "ongoing",
     disclosure: { kind: "self", client: "OpenStreetMap community" },
     links: { live: "https://www.openstreetmap.org" },
     problem:
-      "Large parts of rural Zimbabwe are thinly represented in open spatial data, which limits navigation, planning and humanitarian response exactly where those matter most.",
+      "Large parts of rural Zimbabwe are thinly mapped in open data, which limits navigation, planning and humanitarian response in the places that need them most.",
     approach:
-      "Ongoing digitisation of rural infrastructure — roads, schools, clinics — validation of existing data, and participation in humanitarian mapping campaigns.",
-    outcome: "Open data that other people's systems can be built on.",
+      "Ongoing digitising of rural infrastructure such as roads, schools and clinics, checking existing data, and taking part in humanitarian mapping campaigns.",
+    outcome: "Open map data that other people's systems can build on.",
     metrics: [{ label: "Since", value: "2019", note: "YouthMappers, UZ" }],
-    stack: [
-      { label: "OpenStreetMap", variant: "violet" },
-      { label: "JOSM", variant: "electric" },
-      { label: "iD Editor", variant: "electric" },
-    ],
     images: [],
     visibility: { listed: true, featured: false },
-    updatedAt: "2026-08-19",
+    updatedAt: "2026-11-10",
+  },
+
+  {
+    slug: "drone-outreach-agent",
+    order: 17,
+    title: "Autonomous lead and outreach agent",
+    role: "Author",
+    period: "2026",
+    scale: "Commercial drone operator",
+    status: "live",
+    disclosure: {
+      kind: "anonymised",
+      clientDescriptor: "A commercial drone-services company",
+    },
+    cover: "agent-flow",
+    links: {},
+    accessNote: "An internal system for a client, with no public URL.",
+    problem:
+      "Leads came in through a website form and a shared inbox and were handled by hand. Follow-up depended on who happened to read the message, nobody could say who had been contacted or what had been promised, and a lead that went cold left no record of why.",
+    approach:
+      "An agent watches the inbox and the website's lead forms, identifies and researches each prospect, drafts the outreach and logs every contact to the customer record. Drafts are written from the company's own past email threads, so the tone matches what the team actually sends and improves as more correspondence comes in. A separate prospecting pass looks for potential clients the inbox never produced.",
+    outcome:
+      "No message goes out until a person approves it. The agent researches, drafts and queues, and a member of the team makes the final call, which is what makes it safe to use with real customers.",
+    metrics: [
+      { label: "Outbound", value: "Human-approved", note: "No message sends itself" },
+      { label: "Tone", value: "Learned", note: "From the company's own emails" },
+      { label: "Record", value: "Every contact", note: "Logged against the customer" },
+    ],
+    images: [],
+    visibility: { listed: true, featured: true },
+    updatedAt: "2026-11-10",
   },
 ]

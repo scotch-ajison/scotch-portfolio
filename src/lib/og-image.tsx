@@ -3,7 +3,7 @@ import { siteUrl } from "@/lib/site"
 
 export const ogSize = { width: 1200, height: 630 }
 export const ogContentType = "image/png"
-export const ogAlt = "Scotch Ajison — GIS Systems Architect"
+export const ogAlt = "Scotch Ajison | GIS Systems Architect"
 
 const host = siteUrl.replace(/^https?:\/\//, "")
 

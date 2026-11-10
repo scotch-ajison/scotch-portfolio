@@ -20,6 +20,12 @@ export type ProjectImage = {
   caption?: string
   /** Basemap / imagery attribution, where the frame contains someone else's tiles. */
   credit?: string
+  /**
+   * Serve the prepared file exactly as it is: no blurred placeholder while it
+   * loads and no re-encode by the image optimiser. For screenshots with fine
+   * linework that the optimiser would soften.
+   */
+  crisp?: boolean
 }
 
 export type Metric = {
@@ -76,7 +82,6 @@ export type Project = {
   approach: string
   outcome: string
   metrics: Metric[]
-  stack: { label: string; variant: TagVariant }[]
   images: ProjectImage[]
   plate?: Plate
   /** A drawn cover, for work with nothing photographable. */

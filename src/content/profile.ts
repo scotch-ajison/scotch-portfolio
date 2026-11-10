@@ -15,8 +15,8 @@ export const profile = {
 
   location: "Harare, Zimbabwe",
   timezone: "UTC+2",
-  /** Harare is UTC+2 year-round — that is CEST, a full working day with Europe. */
-  timezoneNote: "UTC+2 — a full working day of overlap with CET/CEST",
+  /** Harare is UTC+2 year-round, the same as CEST: a full working day with Europe. */
+  timezoneNote: "UTC+2, a full working day of overlap with CET/CEST",
   coordinates: { lat: -17.8252, lng: 31.0335, label: "17°49′S 31°03′E" },
 
   email: "sajison71@gmail.com",
@@ -35,7 +35,7 @@ export const profile = {
     "I build the spatial systems that land registries, banks and regulators run on.",
 
   summary:
-    "Six years building production GIS end to end — PostGIS databases, Python and GeoDjango back ends, OGC services through GeoServer, and the map interfaces on top. The systems stay live under daily operational load. Lately I have been building AI on top of that data and measuring it honestly.",
+    "Six years building production systems, specialising in API integration, systems integration and payment systems. I connect land registers, banks, regulators and payment networks so records and money move between them without re-keying. Everything I have shipped runs in production under daily operational load.",
 
   bio: [
     "I trained as a surveying engineer at the University of Zimbabwe, which is why I think in error budgets, ground truth and validation samples rather than in demos. Almost every hard problem — land rights, lending, flood response, infrastructure planning — has a geography to it, and most of the difficulty is not the analysis. It is reconciling identifiers and trusting the data underneath.",
@@ -44,7 +44,7 @@ export const profile = {
   ],
 
   availability:
-    "Open to full-time or contract roles — remote on UTC+2, or with relocation.",
+    "Open to full-time or contract roles, remote on UTC+2 or with relocation.",
 
   credentials: [
     "BSc (Hons) Geoinformatics & Surveying Engineering — University of Zimbabwe, Upper Second Class (2.1)",

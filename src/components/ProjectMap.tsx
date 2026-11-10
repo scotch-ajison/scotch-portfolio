@@ -164,7 +164,7 @@ export default function ProjectMap() {
               />
               <span>
                 {p.title}
-                <span className="text-ink-subtle"> — {p.location.label}</span>
+                <span className="text-ink-subtle"> · {p.location.label}</span>
               </span>
             </li>
           ))}

@@ -52,17 +52,20 @@ const instrumentSerif = localFont({
 })
 
 const description =
-  "GIS systems architect in Harare. I build the spatial systems that land registries, banks and regulators run on — PostGIS, GeoDjango, GeoServer — and the applied AI on top of them."
+  "GIS systems architect in Harare, specialising in API integration, systems integration and payment systems. I build the spatial systems that land registries, banks and regulators run on."
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: `${profile.name} — ${profile.role}`,
+    default: `${profile.name} | ${profile.role}`,
     template: `%s | ${profile.name}`,
   },
   description,
   keywords: [
     "GIS systems architect",
+    "API integration",
+    "payment integration",
+    "systems integration",
     "GeoDjango developer",
     "PostGIS developer",
     "GeoServer",
@@ -75,7 +78,7 @@ export const metadata: Metadata = {
   creator: profile.name,
   alternates: { canonical: "/" },
   openGraph: {
-    title: `${profile.name} — ${profile.role}`,
+    title: `${profile.name} | ${profile.role}`,
     description,
     type: "website",
     url: siteUrl,
@@ -84,7 +87,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: `${profile.name} — ${profile.role}`,
+    title: `${profile.name} | ${profile.role}`,
     description,
   },
   robots: {

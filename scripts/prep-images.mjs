@@ -88,6 +88,17 @@ const MANIFEST = [
     lift: true,
   },
 
+  // ── Zimbabwe National eCadastre (web map) ────────────────
+  // The owner's own screenshot of the live map. Thin parcel outlines go soft
+  // under any downscale or low-quality encode, so this one keeps its native
+  // width and a high quality, and the card serves it unoptimised (crisp).
+  {
+    slug: "ecadastre-map",
+    source: `${REPO_PHOTOS}/ecadastre-map.webp`,
+    maxWidth: 1917,
+    quality: 92,
+  },
+
   // ── Investor Hosting Centre (public portal) ──────────────
   {
     slug: "ihc-portal",

@@ -60,7 +60,7 @@ export default function HomePage() {
             list, so it cannot disagree with the page it links to. */}
           <dl className="grid grid-cols-2 md:grid-cols-4 gap-px mt-16 md:mt-24 border border-line rounded-md overflow-hidden bg-line lg:max-w-[56%]">
           {[
-            { v: `${counts.years}+`, k: "Years in production GIS" },
+            { v: `${counts.years}+`, k: "Years in production systems" },
             { v: String(counts.projects), k: "Projects documented" },
             { v: String(counts.live), k: "Live in production" },
             { v: String(counts.publicRepos), k: "Public repositories" },
@@ -101,7 +101,7 @@ export default function HomePage() {
       {/* ═══ SELECTED WORK ═══════════════════════════════════ */}
       <section className="max-w-[1240px] mx-auto px-6 pt-20 md:pt-28">
         <ScrollReveal>
-          <p className="section-mark mb-10">§ 01 — Selected work</p>
+          <p className="section-mark mb-10">§ 01 · Selected work</p>
         </ScrollReveal>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
@@ -136,7 +136,7 @@ export default function HomePage() {
       <section className="mt-24 md:mt-32 bg-band text-on-band on-band">
         <div className="max-w-[1240px] mx-auto px-6 py-20 md:py-28">
           <ScrollReveal>
-            <p className="section-mark mb-12">§ 02 — How I work</p>
+            <p className="section-mark mb-12">§ 02 · How I work</p>
           </ScrollReveal>
 
           <ScrollReveal>
@@ -149,16 +149,16 @@ export default function HomePage() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-14 mt-16">
             {[
               {
-                h: "Measured, not asserted",
-                p: "My building-change research reports, in its own README, that vertical extension is not detectable at that resolution — the height deltas have symmetric tails at every threshold, which is what noise looks like. A negative result stated plainly is worth more than a number nobody checked.",
+                h: "Integration first",
+                p: "On the national eCadastre I designed and built every API, including the links that keep the land register in step with the Deeds Registry, the One Stop Shop and the Mining Cadastre. I have also integrated banking and payment systems into live platforms. I plan how systems will exchange data before I design the screens.",
               },
               {
-                h: "Safe by construction",
-                p: "In the crop-disease pipeline the vision model may only describe what it sees; it is forbidden from naming a disease. A build-time validator fails the build if an output recommends a restricted pesticide. It caught eight, inherited from foreign extension sources.",
+                h: "Results I can show",
+                p: "My building change study states in its README that vertical extensions cannot be detected at the available resolution, because the height changes behave like noise at every threshold. In the crop disease pipeline, a check fails the build if any output recommends a restricted pesticide, and it has already caught eight.",
               },
               {
                 h: "Built to be handed over",
-                p: "I deployed GIS databases across more than ten rural district councils and trained the staff to run them without outside support. Installing the platform is the easy half; the councils still operating them is the part that counted.",
+                p: "I deployed spatial databases across more than ten rural district councils and trained their staff to run them. The councils still operate those systems without outside support.",
               },
             ].map((c) => (
               <ScrollReveal key={c.h}>
@@ -175,7 +175,7 @@ export default function HomePage() {
       {/* ═══ CAPABILITIES ════════════════════════════════════ */}
       <section className="max-w-[1240px] mx-auto px-6 py-20 md:py-28">
         <ScrollReveal>
-          <p className="section-mark mb-12">§ 03 — Capabilities</p>
+          <p className="section-mark mb-12">§ 03 · Capabilities</p>
         </ScrollReveal>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-10 gap-y-12">
@@ -204,7 +204,7 @@ export default function HomePage() {
                   Have a system that needs to know where things are?
                 </h2>
                 <p className="text-fg-muted text-[16px] leading-[1.7] mt-5">
-                  {profile.availability} {profile.timezoneNote}.
+                  {profile.availability}
                 </p>
               </div>
               <div className="flex flex-col items-start gap-4 shrink-0">

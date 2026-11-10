@@ -1,5 +1,4 @@
 import Image from "next/image"
-import StackTag from "@/components/StackTag"
 import AgentFlowCover from "./AgentFlowCover"
 import type { Project } from "@/content/types"
 
@@ -134,7 +133,8 @@ export default function ProjectCard({
             src={hero.src}
             alt={hero.alt}
             fill
-            placeholder="blur"
+            placeholder={hero.crisp ? "empty" : "blur"}
+            unoptimized={hero.crisp}
             quality={75}
             sizes={isFull ? "(max-width: 768px) 100vw, 1180px" : "(max-width: 768px) 100vw, 580px"}
             className="object-cover object-top"
@@ -203,12 +203,6 @@ export default function ProjectCard({
           </div>
         )}
 
-        <div className="flex flex-wrap gap-1.5">
-          {project.stack.map((t) => (
-            <StackTag key={t.label} label={t.label} variant={t.variant} />
-          ))}
-        </div>
-
         <div className="flex flex-wrap items-center justify-between gap-4 pt-1 mt-auto">
           <Proof project={project} />
           <p className="font-mono text-[11px] text-ink-subtle ml-auto">{project.period}</p>
@@ -223,7 +217,8 @@ export default function ProjectCard({
                     src={img.src}
                     alt={img.alt}
                     fill
-                    placeholder="blur"
+                    placeholder={img.crisp ? "empty" : "blur"}
+                    unoptimized={img.crisp}
                     quality={70}
                     sizes="(max-width: 768px) 45vw, 360px"
                     className="object-cover object-top"
