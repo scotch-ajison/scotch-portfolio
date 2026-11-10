@@ -35,12 +35,12 @@ export const profile = {
     "I build the spatial systems that land registries, banks and regulators run on.",
 
   summary:
-    "Six years building production systems, specialising in API integration, systems integration and payment systems. I connect land registers, banks, regulators and payment networks so records and money move between them without re-keying. Everything I have shipped runs in production under daily operational load.",
+    "Six years building production GIS and software end to end: PostGIS databases, Python and GeoDjango back ends, OGC services through GeoServer, API and systems integration, payment systems, and the map interfaces on top. The systems stay live under daily operational load. Lately I have been building AI on top of that data and measuring it honestly.",
 
   bio: [
     "I trained as a surveying engineer at the University of Zimbabwe, which is why I think in error budgets, ground truth and validation samples rather than in demos. Almost every hard problem — land rights, lending, flood response, infrastructure planning — has a geography to it, and most of the difficulty is not the analysis. It is reconciling identifiers and trusting the data underneath.",
     "That became a career architecting the systems Zimbabwe's institutions now run on. I was the GIS systems architect on the team that delivered the national electronic cadastre, and on the team behind the first GIS-driven mortgage platform in Zimbabwean banking. Both are live and in daily use. I did not build either alone, and neither is mine — but the spatial architecture on both was my work.",
-    "My own projects are where I get to be exact about what is and is not true. A QGIS plugin that packs a multi-gigabyte orthomosaic into one shareable file. A crop-disease pipeline where the vision model is forbidden from naming a disease and a build-time validator fails the build if an output recommends a banned pesticide. A building-change record for one Harare suburb that reports, in its own README, the one thing it cannot detect.",
+    "My own projects are where I get to be exact about what is and is not true. A QGIS plugin that packs a multi-gigabyte orthomosaic into one shareable file. A crop-disease pipeline where the vision model is forbidden from naming a disease and a build-time validator fails the build if an output recommends a banned pesticide.",
   ],
 
   availability:

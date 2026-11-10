@@ -154,7 +154,7 @@ export default function HomePage() {
               },
               {
                 h: "Results I can show",
-                p: "My building change study states in its README that vertical extensions cannot be detected at the available resolution, because the height changes behave like noise at every threshold. In the crop disease pipeline, a check fails the build if any output recommends a restricted pesticide, and it has already caught eight.",
+                p: "In the crop disease pipeline the image step may only describe what it sees, and a check fails the build if any output recommends a restricted pesticide. It caught eight that had come in from foreign extension sources.",
               },
               {
                 h: "Built to be handed over",

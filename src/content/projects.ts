@@ -229,7 +229,7 @@ export const projects: Project[] = [
   {
     slug: "field-pack",
     order: 7,
-    title: "Field Pack: orthomosaics without GIS software",
+    title: "Field Pack: a QGIS plugin for sharing orthomosaics",
     role: "Author. Open source, MIT",
     period: "2026",
     scale: "QGIS plugin and command-line tool",
@@ -239,7 +239,7 @@ export const projects: Project[] = [
     problem:
       "A 19 GB orthomosaic is hard to hand over because of the software it needs more than because of its size. The recipient needs GIS software, a server or both, so in practice the survey often never reaches the person who needed to see it.",
     approach:
-      "Field Pack packs a project or an orthophoto, including the compressed formats drone survey firms deliver, into a single file with a built-in viewer that opens straight from the filesystem, with no server and no internet connection. It runs as a panel inside QGIS or from the command line, and installs cleanly on Windows from one zip.",
+      "Field Pack is a QGIS plugin that packs a project or an orthophoto, including the compressed formats drone survey firms deliver, into a single file with a built-in viewer. The recipient opens it straight from the filesystem, with no GIS software, no server and no internet connection. It runs as a panel inside QGIS or from the command line, and installs cleanly on Windows from one zip.",
     outcome:
       "Version 0.1 shipped as an installable zip. The style translator does not need QGIS loaded to run, so its tests finish in about a tenth of a second.",
     metrics: [
@@ -291,36 +291,6 @@ export const projects: Project[] = [
       { label: "Caught", value: "8 banned actives", note: "The build now fails on a match" },
     ],
     images: [],
-    visibility: { listed: true, featured: true },
-    updatedAt: "2026-11-10",
-  },
-
-  {
-    slug: "building-change-observatory",
-    order: 9,
-    title: "Building Change Observatory",
-    role: "Author. Open data, CC BY 4.0",
-    period: "2026",
-    scale: "8 km² of Harare, 2016 to present",
-    status: "research",
-    disclosure: { kind: "self", client: "Own project" },
-    plate: { mark: "BCO", caption: "Building Change Observatory" },
-    links: {},
-    accessNote:
-      "Not yet published. The repository stays local while the validation sample is scored.",
-    problem:
-      "Banks, valuers and planners need dated, verifiable records of building change. The original brief was to trace every built-up parcel in Zimbabwe off a commercial basemap. The licence forbids derived datasets, and a basemap is a single undated mosaic that cannot show when anything changed, so that approach could not work.",
-    approach:
-      "I cut the scope to one suburb on purpose. Fixed building footprints act as unchanging containers, and yearly presence and height measurements are summarised into each one, so every period is measured the same way as the last. A two-period persistence rule keeps threshold noise from being reported as change. Remote imagery is read in small windows, which means about 38 MB of traffic for an area of a 1 GB tile instead of the whole file.",
-    outcome:
-      "The most useful result is a negative one, and the README states it up front. At this resolution, building-level height changes spread evenly in both directions at every threshold, which is how noise behaves, so vertical extensions cannot be detected. The study reports that as a finding.",
-    metrics: [
-      { label: "Buildings", value: "30,336", note: "Median footprint 47 m²" },
-      { label: "Presence", value: "35.5% → 46.4%", note: "2016 → 2023" },
-      { label: "Unresolved", value: "49%", note: "Reported in the results" },
-    ],
-    images: [],
-    location: { lat: -17.7836, lng: 31.0522, label: "Mount Pleasant, Harare" },
     visibility: { listed: true, featured: true },
     updatedAt: "2026-11-10",
   },

@@ -196,6 +196,3 @@ nothing is emailed.
   excludes it from code search by default. With 0 stars and 0 forks there is
   nothing to protect: ask GitHub Support to detach it — that keeps the URL, the
   history and the Vercel connection intact.
-- **The Building Change Observatory has no screenshot** because its map is a
-  local Leaflet page that needs a running server to capture. The metrics are
-  real and on the card; the image slot is ready.
